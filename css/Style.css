@@ -1,0 +1,152 @@
+﻿body {
+    background-color:black;
+}
+
+#container {
+    margin:0 auto;
+    width:100%;
+    background-color:black;
+    font-family:'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+#left_logo {
+    Height:150px;
+    text-align:left;
+    margin-left:20px;
+}
+
+#header_text{
+    background-color:#FFCC33;
+    text-align:center;
+    font-weight:bold;
+    font-size:30pt;
+    padding:5px;
+}
+
+#menu {
+    margin:0 auto;
+    background-color:white;
+    height:20px;
+    width:45%;
+    float:left;
+}
+
+#menu_container {
+    display:block;
+    width:100%;
+    float:left;
+    margin:0 auto;
+    background-color:white;
+    clear:both;
+    border-bottom:1px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+#menu {
+    display:block;
+    float:left;
+}
+
+#NavMenu {
+    width:auto;
+    float:left;
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+#NavMenu li a {
+    display:block;
+    padding:8px 15px !important;
+    text-decoration:none;
+    font-weight:bold;
+    color:black;
+    background-color:white;
+    border-right:1px solid #ccc;
+}
+
+#NavMenu li a:hover {
+    color:#FFCC33;
+    background-color:black;
+}
+
+.level1 li a {
+    padding:200px;
+}
+
+.level2 li a{
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+
+#login_status {
+    width:auto;
+    float:right;
+    margin:0;
+    padding:0;
+    list-style:none;
+    background-color:white;
+    text-align:right;
+}
+
+#LoginStatus {
+    color:black;
+    padding:8px 15px !important;
+    text-decoration:none;
+    font-weight:bold;
+    display:block;
+}
+
+#LoginStatus:hover {
+    color:#FFCC33;
+    background-color:black;
+}
+
+#main {
+    background-color:#585858;
+    color:white;
+    padding:20px;
+    margin-top:50px;
+    margin-bottom:15px;
+}
+
+h4 {
+    text-align: center;
+}
+
+#socialMedia_links {
+    background-color:white;
+    text-align:center;
+}
+
+.facebook, .linkedin, .twitter, .instagram, .flickr {
+    color:#FFCC33;
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 3px;
+    font-size: 1em;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    background-color:black;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-decoration:none;
+    width:75px;
+    text-align:center;
+}
+
+#footer {
+    margin:0 auto;
+    color:white;
+    border-top:1px solid black;
+    text-align:center;  
+    font-size:12px;
+    margin-top:20px;
+}

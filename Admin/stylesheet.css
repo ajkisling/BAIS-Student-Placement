@@ -1,0 +1,163 @@
+﻿body {
+    margin:0 auto;
+    padding:0;
+}
+
+h3 {
+margin:0 0 5px 0;
+padding:0;
+}
+
+h4 {
+margin:0 0 5px 0;
+padding:0;
+}
+
+img {
+    border:1px solid black;
+    margin-left:15px;
+}
+
+#container {
+    padding:20px;
+}
+
+.detailheader {
+text-align:right;
+}
+
+.detailuser {
+text-align:left;
+}
+
+.roleDiv {
+    width:50%;
+    margin: 10px;
+    padding:20px;
+    border: solid 1px #525252;
+    color: #7C6F57;
+    background-color: #F7F6F3;
+}
+
+.homeDiv {
+    width:85%;
+    margin: 10px;
+    padding:20px;
+    border: solid 1px #525252;
+    color: #7C6F57;
+    background-color: #F7F6F3;
+}
+
+.cssTable{width: 100%;
+    margin: 5px 0 10px 0;
+    border: solid 1px #525252;
+    border-collapse: collapse;
+    text-align: center;
+    color: #7C6F57;
+    background-color: #F7F6F3;
+}
+
+
+/* CSS to format a gridview -- START*/
+.cssGridView {
+    width: 100%;
+    margin: 5px 0 10px 0;
+    border: solid 1px #525252;
+    border-collapse: collapse;
+    text-align: center;
+    color: #7C6F57;
+    background-color: #F7F6F3;
+}
+
+
+    .cssGridView td {
+        padding: 10px;
+        border: solid 1px #c1c1c1;
+        color: #717171;
+    }
+
+        .cssGridView td a, a:visited {
+            color: #717171;
+            text-decoration: underline;
+        }
+
+        .cssGridView td a:hover {
+            color: #c00;
+            text-decoration: underline;
+        }
+
+
+    .cssGridView th {
+        padding: 10px;
+        color: #fff;
+        background: #424242;
+        border-left: solid 1px #525252;
+        font-size: 0.9em;
+    }
+
+        .cssGridView th a {
+            color: silver;
+            text-decoration: none;
+        }
+
+            .cssGridView th a:hover {
+                color: white;
+                background-color: #7C6F57;
+                text-decoration: underline;
+            }
+
+
+    .cssGridView .odd {
+        background: #fcfcfc;
+    }
+/* CSS to format a gridview -- END*/
+
+.label {
+    padding: 10px;
+    text-align: right;
+}
+
+.detailitem {
+    padding: 10px;
+    text-align: left;
+}
+
+.command {
+    padding: 10px;
+    height: 50px;
+    text-align: center;
+}
+
+#nav {
+    width: 100%;
+    float: left;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+
+    #nav li {
+        float: left;
+    }
+
+        #nav li a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #069;
+            border-right: 1px solid #ccc;
+        }
+
+            #nav li a:hover {
+                color: #c00;
+                background-color: #fff;
+            }
+
+#nav li.currentPage {
+             
+                background-color:pink;
+            }
