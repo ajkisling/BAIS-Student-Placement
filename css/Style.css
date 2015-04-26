@@ -7,6 +7,7 @@
     width:100%;
     background-color:black;
     font-family:'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size:11pt;
 }
 
 #left_logo {
@@ -149,4 +150,9 @@ h4 {
     text-align:center;  
     font-size:12px;
     margin-top:20px;
+}
+
+.dropdown {
+    font-family:'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size:11pt;
 }
