@@ -52,8 +52,11 @@
             <asp:DropDownList ID="ddl_JobSkill3" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkillID">
             </asp:DropDownList>
         </p>
-        <br />
+        <asp:Label ID="lbl_JobDescription" runat="server" Text="Job Description:   " Style="vertical-align: top;"></asp:Label>
+        <asp:TextBox ID="tb_JobDescription" runat="server" CssClass="dropdown" Height="125px" Width="350px" ></asp:TextBox>
+
         <p>
+        <br />
             <asp:Label ID="lbl_Major" runat="server" Text="Major:  "></asp:Label>
             <asp:DropDownList ID="ddl_Major" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_Major" DataTextField="PGMS_PROGRAM_DESCR" DataValueField="ProgramID">
             </asp:DropDownList>
