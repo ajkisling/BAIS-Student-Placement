@@ -100,6 +100,8 @@
         SelectCommand="SELECT [JobTitleID], [JobTitle] FROM [JobTitle]">
     </asp:SqlDataSource>
     
+    <asp:SqlDataSource ID="SqlDataSource_EditMajor" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" SelectCommand="SELECT [ProgramID], [ProgramDesc] FROM [Majors]"></asp:SqlDataSource>
+    
     <asp:SqlDataSource ID="SqlDataSource_EditJobSkills" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
         SelectCommand="SELECT [JobSkillID], [JobSkillDescription] FROM [JobSkills]">
     </asp:SqlDataSource>
@@ -170,12 +172,17 @@
 
                 <tr>
                     <td align="right">Description:  </td>
-                    <td align="left"><asp:TextBox ID="tb_JobDescription" runat="server" Text='<%# Bind("JobDescription") %>' /></td>
+                    <td align="left"><asp:TextBox ID="tb_JobDescription" runat="server" Height="125px" Width="350px" TextMode="MultiLine" Text='<%# Bind("JobDescription") %>' /></td>
                 </tr>
                 <tr>
                     <td align="right">Major:  </td>
-                    <td align="left"><asp:TextBox ID="tb_ProgramDesc" runat="server" Text='<%# Bind("ProgramDesc") %>' /></td>
+                    <td align="left">
+                        <asp:DropDownList ID="ddl_EditMajor" runat="server" DataSourceID="SqlDataSource_EditMajor"
+                            DataTextField="ProgramDesc" DataValueField="ProgramID" SelectedValue='<%# Bind("ProgramID")%>'>
+                        </asp:DropDownList>
+                    </td>
                 </tr>
+
                 <tr>
                     <td align="right">Internship:  </td>
                     <td align="left"><asp:TextBox ID="tb_Internship" runat="server" Text='<%# Bind("Internship") %>' /></td>
