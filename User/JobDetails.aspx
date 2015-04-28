@@ -3,7 +3,25 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
     <asp:SqlDataSource ID="SqlDataSource_JobDetails" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
+
+        DeleteCommand="DELETE FROM [AddJob] WHERE [JobID] = @JobID" 
+        InsertCommand="INSERT INTO [AddJob] ([CompanyID], [JobTitleID], [ProgramID], [TermID], [JobTypeID], [JobDescription], [JobSkill1], [JobSkill2], [JobSkill3], [UserID], [Internship], [PaidIntern]) VALUES (@CompanyID, @JobTitleID, @ProgramID, @TermID, @JobTypeID, @JobDescription, @JobSkill1, @JobSkill2, @JobSkill3, @UserID, @Internship, @PaidIntern)" 
+        UpdateCommand="UPDATE [AddJob] 
+                        SET [CompanyID] = @CompanyID, 
+                            [JobTitleID] = @JobTitleID, 
+                            [ProgramID] = @ProgramID, 
+                            [TermID] = @TermID, 
+                            [JobTypeID] = @JobTypeID, 
+                            [JobDescription] = @JobDescription, 
+                            [JobSkill1] = @JobSkill1, 
+                            [JobSkill2] = @JobSkill2, 
+                            [JobSkill3] = @JobSkill3, 
+                            [UserID] = @UserID, 
+                            [Internship] = @Internship, 
+                            [PaidIntern] = @PaidIntern 
+                            WHERE [JobID] = @JobID"
         SelectCommand="SELECT [Company].[CompanyName], 
                             [JobTitle].[JobTitle], 
                             [JobType].[JobType], 
@@ -22,7 +40,7 @@
                             [AddJob].[TermID],
                             [AddJob].[JobTypeID], 
                             [AddJob].[UserID]
-                    FROM [AddJob], [Majors], [Company], [JobTitle], [JobType], [AcademicTerm]
+                    FROM [AddJob], [Majors], [Company], [JobTitle], [JobType], [AcademicTerm], [JobSkills]
                     WHERE ([AddJob].[JobID] = @JobID) 
                         and [AddJob].[CompanyID]=[Company].[CompanyID]
                         and [AddJob].[JobTitleID]=[JobTitle].[JobTitleID]
@@ -32,13 +50,6 @@
         <SelectParameters>
             <asp:QueryStringParameter Name="JobID" QueryStringField="JobID" Type="Int32" />
         </SelectParameters>
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSource_EditJobDetails" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
-       
-        DeleteCommand="DELETE FROM [AddJob] WHERE [JobID] = @JobID" 
-        InsertCommand="INSERT INTO [AddJob] ([CompanyID], [JobTitleID], [ProgramID], [TermID], [JobTypeID], [JobDescription], [JobSkill1], [JobSkill2], [JobSkill3], [UserID], [Internship], [PaidIntern]) VALUES (@CompanyID, @JobTitleID, @ProgramID, @TermID, @JobTypeID, @JobDescription, @JobSkill1, @JobSkill2, @JobSkill3, @UserID, @Internship, @PaidIntern)" 
-        SelectCommand="SELECT [JobID], [CompanyID], [JobTitleID], [ProgramID], [TermID], [JobTypeID], [JobDescription], [JobSkill1], [JobSkill2], [JobSkill3], [UserID], [Internship], [PaidIntern] FROM [AddJob] WHERE ([JobID] = @JobID)" 
-        UpdateCommand="UPDATE [AddJob] SET [CompanyID] = @CompanyID, [JobTitleID] = @JobTitleID, [ProgramID] = @ProgramID, [TermID] = @TermID, [JobTypeID] = @JobTypeID, [JobDescription] = @JobDescription, [JobSkill1] = @JobSkill1, [JobSkill2] = @JobSkill2, [JobSkill3] = @JobSkill3, [UserID] = @UserID, [Internship] = @Internship, [PaidIntern] = @PaidIntern WHERE [JobID] = @JobID">
         
         <DeleteParameters>
             <asp:Parameter Name="JobID" Type="Int32" />
@@ -59,10 +70,6 @@
             <asp:Parameter Name="PaidIntern" Type="String" />
         </InsertParameters>
         
-        <SelectParameters>
-            <asp:QueryStringParameter Name="JobID" QueryStringField="JobID" Type="Int32" />
-        </SelectParameters>
-        
         <UpdateParameters>
             <asp:Parameter Name="CompanyID" Type="Int32" />
             <asp:Parameter Name="JobTitleID" Type="Int32" />
@@ -78,10 +85,23 @@
             <asp:Parameter Name="PaidIntern" Type="String" />
             <asp:Parameter Name="JobID" Type="Int32" />
         </UpdateParameters>
-    
+
     </asp:SqlDataSource>
+
     <asp:SqlDataSource ID="SqlDataSource_CompanyEdit" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
             SelectCommand="SELECT [CompanyID], [CompanyName] FROM [Company]">
+    </asp:SqlDataSource>
+    
+    <asp:SqlDataSource ID="SqlDataSource_EditJobType" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
+        SelectCommand="SELECT [JobTypeID], [JobType] FROM [JobType]">
+    </asp:SqlDataSource>
+    
+    <asp:SqlDataSource ID="SqlDataSource_EditJobTitle" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
+        SelectCommand="SELECT [JobTitleID], [JobTitle] FROM [JobTitle]">
+    </asp:SqlDataSource>
+    
+    <asp:SqlDataSource ID="SqlDataSource_EditJobSkills" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
+        SelectCommand="SELECT [JobSkillID], [JobSkillDescription] FROM [JobSkills]">
     </asp:SqlDataSource>
     
     <asp:FormView ID="FormView1" runat="server" DataKeyNames="JobID" DataSourceID="SqlDataSource_JobDetails">
@@ -93,33 +113,61 @@
                     <td align="right">Job ID:  </td>
                     <td align="left"><asp:Label ID="JobID" runat="server" enabled="false" Text='<%# Bind("JobID")%>' /></td>
                 </tr>
+
                 <tr>
                     <td align="right">Company:  </td>
                     <td align="left">
                         <asp:DropDownList ID="ddl_CompanyEdit" runat="server" DataSourceID="SqlDataSource_CompanyEdit" 
                             DataTextField="CompanyName" DataValueField="CompanyID" SelectedValue='<%# Bind("CompanyID")%>'>
                         </asp:DropDownList>
+                    </td>
                 </tr>
+
                 <tr>
                     <td align="right">Title:  </td>
-                    <td align="left"><asp:TextBox ID="tb_JobTitle" runat="server" Text='<%# Bind("JobTitle") %>' /></td>
+                    <td align="left">
+                        <asp:DropDownList ID="ddl_EditJobTitle" runat="server" DataSourceID="SqlDataSource_EditJobTitle"
+                            DataValueField="JobTitleID" DataTextField="JobTitle" SelectedValue='<%# Bind("JobTitleID")%>'>
+                        </asp:DropDownList>
+                    </td>
                 </tr>
+
                 <tr>
                     <td align="right">Type:  </td>
-                    <td align="left"><asp:TextBox ID="tb_JobType" runat="server" Text='<%# Bind("JobType") %>' /></td>
+                    <td align="left">
+                        <asp:DropDownList ID="ddl_EditJobType" runat="server" DataSourceID="SqlDataSource_EditJobType"
+                            DataValueField="JobTypeID" DataTextField="JobType" SelectedValue='<%# Bind("JobTypeID")%>'>
+                        </asp:DropDownList>
+                    </td>
                 </tr>
+
                 <tr>
                     <td align="right">Skill 1:  </td>
-                    <td align="left"><asp:TextBox ID="tb_JobSkill1" runat="server" Text='<%# Bind("JobSkill1") %>' /></td>
+                    <td align="left">
+                        <asp:DropDownList ID="ddl_EditJobSkill1" runat="server" DataSourceID="SqlDataSource_EditJobSkills"
+                            DataValueField="JobSkillID" DataTextField="JobSkillDescription">
+                        </asp:DropDownList>
+                    </td>
                 </tr>
+
                 <tr>
                     <td align="right">Skill 2:  </td>
-                    <td align="left"><asp:TextBox ID="tb_JobSkill2" runat="server" Text='<%# Bind("JobSkill2") %>' /></td>
+                    <td align="left">
+                        <asp:DropDownList ID="ddl_EditJobSkill2" runat="server" DataSourceID="SqlDataSource_EditJobSkills"
+                            DataTextField="JobSkillDescription" DataValueField="JobSkillID">
+                        </asp:DropDownList>
+                    </td>
                 </tr>
+
                 <tr>
                     <td align="right">Skill 3:  </td>
-                    <td align="left"><asp:TextBox ID="tb_JobSkill3" runat="server" Text='<%# Bind("JobSkill3") %>' /></td>
+                    <td align="left">
+                        <asp:DropDownList ID="ddl_EditJobSkill3" runat="server" DataSourceID="SqlDataSource_EditJobSkills"
+                            DataTextField="JobSkillDescription" DataValueField="JobSkillID">
+                        </asp:DropDownList>
+                    </td>
                 </tr>
+
                 <tr>
                     <td align="right">Description:  </td>
                     <td align="left"><asp:TextBox ID="tb_JobDescription" runat="server" Text='<%# Bind("JobDescription") %>' /></td>
@@ -143,9 +191,11 @@
             </table>
 
         </EditItemTemplate>
+
         <InsertItemTemplate>
 
         </InsertItemTemplate>
+
         <ItemTemplate>
             
             <table>
@@ -199,13 +249,13 @@
                 </tr>
             </table>
 
+            <asp:Button ID="btn_EditJobDetails" runat="server" Text="Edit" CausesValidation="False" CommandName="Edit" CssClass="dropdown" />
+            &nbsp;
+            <asp:Button ID="btn_DeleteJob" runat="server" Text="Delete" CausesValidation="False" CommandName="Delete" OnClientClick="return confirm ('Are you sure you want to delete this job?')" CssClass="dropdown" />
+
         </ItemTemplate>
 
     </asp:FormView>
-
-        <asp:Button ID="btn_EditJobDetails" runat="server" Text="Edit" CausesValidation="False" CommandName="Edit" CssClass="dropdown" />
-        &nbsp;
-        <asp:Button ID="btn_DeleteJob" runat="server" Text="Delete" CausesValidation="False" CommandName="Delete" OnClientClick="('Are you sure you want to delete this job?')" CssClass="dropdown" />
 
 </asp:Content>
 
