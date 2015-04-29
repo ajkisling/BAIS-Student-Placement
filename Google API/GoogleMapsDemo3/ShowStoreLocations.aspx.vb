@@ -1,12 +1,14 @@
 ﻿Imports System.Collections.Generic
 Imports System.Data
-Partial Class ShowJobLocations
+
+Partial Class ShowStoreLocations
     Inherits System.Web.UI.Page
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             Dim address = Request.QueryString("Address")
             If String.IsNullOrEmpty(address) Then
-                Response.Redirect("FindAJob.aspx")
+                Response.Redirect("FindAStore.aspx")
             End If
 
             'Get the lat/long info about the address
@@ -18,10 +20,11 @@ Partial Class ShowJobLocations
             Dim lat = results.Element("result").Element("geometry").Element("location").Element("lat").Value
             Dim lng = results.Element("result").Element("geometry").Element("location").Element("lng").Value
 
-            dsSearchResults.SelectParameters("Latitude").DefaultValue = results.Element("result").Element("geometry").Element("location").Element("lat").Value
-            dsSearchResults.SelectParameters("Longitude").DefaultValue = results.Element("result").Element("geometry").Element("location").Element("lng").Value
+            dsSearchResults.SelectParameters("Latitude").DefaultValue = lat
+            dsSearchResults.SelectParameters("Longitude").DefaultValue = lng
 
             lvSearchResults.DataBind()
+
 
             'Loop through each nearby location and build up the JavaScript to place the markers
             Dim locations As New List(Of String)
@@ -47,4 +50,3 @@ Partial Class ShowJobLocations
         End If
     End Sub
 End Class
-
