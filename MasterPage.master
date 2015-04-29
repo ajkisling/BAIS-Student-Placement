@@ -13,7 +13,8 @@
 
 <body>
     <form id="form1" runat="server">
-        
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
         <div id="container">
             
             <div id="header_container">
@@ -42,6 +43,7 @@
                             <asp:MenuItem NavigateUrl="~/User/AddJob.aspx" Text="Add Job" Value="Add Job"></asp:MenuItem>                            
                             <asp:MenuItem NavigateUrl="~/JobPostings.aspx" Text="Job Postings" Value="Add Internship"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/About.aspx" Text="About Us" Value="About Us"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/FindAJob.aspx" Text="Job's Map" Value="Job's Map"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Admin/default.aspx" Text="Admin" Value="Admin"></asp:MenuItem>
                         </Items>
                      </asp:Menu>
@@ -54,11 +56,11 @@
             </div> <!-- close menu_container DIV -->
 
             <div id="main">
-
+                
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
                     MAIN        
                 </asp:ContentPlaceHolder>
-
+                
             </div> <!-- close main DIV -->
             
             <div id="socialMedia_links">

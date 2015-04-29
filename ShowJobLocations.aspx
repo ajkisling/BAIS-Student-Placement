@@ -8,55 +8,194 @@
 
     <asp:UpdatePanel ID="upSearchResults" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
-            <asp:ListView ID="lvSearchResults" runat="server" DataSourceID="dsSearchResults">
+            <asp:ListView ID="lvSearchResults" runat="server" DataSourceID="dsSearchResults" DataKeyNames="StoreNumber">
+                <AlternatingItemTemplate>
+                    <tr style="">
+                        <td>
+                            <asp:Label ID="StoreNumberLabel" runat="server" Text='<%# Eval("StoreNumber") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="AddressLabel" runat="server" Text='<%# Eval("Address") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="CityLabel" runat="server" Text='<%# Eval("City") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="RegionLabel" runat="server" Text='<%# Eval("Region") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="CountryCodeLabel" runat="server" Text='<%# Eval("CountryCode") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="Postal_CodeLabel" runat="server" Text='<%# Eval("[Postal Code]") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="LatitudeLabel" runat="server" Text='<%# Eval("Latitude") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="LongitudeLabel" runat="server" Text='<%# Eval("Longitude") %>' />
+                        </td>
+                    </tr>
+                </AlternatingItemTemplate>
+                <EditItemTemplate>
+                    <tr style="">
+                        <td>
+                            <asp:Button ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
+                        </td>
+                        <td>
+                            <asp:Label ID="StoreNumberLabel1" runat="server" Text='<%# Eval("StoreNumber") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="AddressTextBox" runat="server" Text='<%# Bind("Address") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="CityTextBox" runat="server" Text='<%# Bind("City") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="RegionTextBox" runat="server" Text='<%# Bind("Region") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="CountryCodeTextBox" runat="server" Text='<%# Bind("CountryCode") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="Postal_CodeTextBox" runat="server" Text='<%# Bind("[Postal Code]") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="LatitudeTextBox" runat="server" Text='<%# Bind("Latitude") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="LongitudeTextBox" runat="server" Text='<%# Bind("Longitude") %>' />
+                        </td>
+                    </tr>
+                </EditItemTemplate>
                 <EmptyDataTemplate>
-                    <div id="noResults">
-                        <p>
-                            There are no branches within 15 miles of the address you entered. Please try again...
-                        </p>
-                        <p>
-                            <b>Hint:</b> We have branches in Southern California. Try entering an address like
-                            <i>San Diego</i> or <i>92109</i> or <i>Studio City, CA</i>.
-                        </p>
-                    </div>
+                    <table runat="server" style="">
+                        <tr>
+                            <td>No data was returned.</td>
+                        </tr>
+                    </table>
                 </EmptyDataTemplate>
 
                 <LayoutTemplate>
-                    <table cellspacing="0" cellpadding="5" rules="all" class="searchResults">
-                        <tr>
-                            <th>
-                                <asp:LinkButton runat="server" ID="lbSortStoreNumber" CommandName="Sort" CommandArgument="StoreNumber">Store #</asp:LinkButton>
-                            </th>
-                            <th>
-                                <asp:LinkButton runat="server" ID="lbSortDistance" CommandName="Sort" CommandArgument="DistanceFromAddress">Distance</asp:LinkButton>
-                            </th>
-                            <th>Address</th>
+                    <table runat="server">
+                        <tr runat="server">
+                            <td runat="server">
+                                <table id="itemPlaceholderContainer" runat="server" border="0" style="">
+                                    <tr runat="server" style="">
+                                        <th runat="server">StoreNumber</th>
+                                        <th runat="server">Address</th>
+                                        <th runat="server">City</th>
+                                        <th runat="server">Region</th>
+                                        <th runat="server">CountryCode</th>
+                                        <th runat="server">Postal Code</th>
+                                        <th runat="server">Latitude</th>
+                                        <th runat="server">Longitude</th>
+                                    </tr>
+                                    <tr id="itemPlaceholder" runat="server">
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
-                        <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
+                        <tr runat="server">
+                            <td runat="server" style=""></td>
+                        </tr>
                     </table>
                 </LayoutTemplate>
 
-                <ItemTemplate>
-                    <tr>
-                        <td><%# Eval("StoreNumber") %></td>
-                        <td><%# Eval("DistanceFromAddress", "{0:0.00}")%> miles</td>
+                <InsertItemTemplate>
+                    <tr style="">
                         <td>
-                            <%# Eval("Address")%><br />
-                            <%# Eval("City")%>, <%# Eval("Region")%><br />
-                            <%# Eval("CountryCode")%> <%# Eval("PostalCode")%>
+                            <asp:Button ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
+                            <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" Text="Clear" />
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+                            <asp:TextBox ID="AddressTextBox" runat="server" Text='<%# Bind("Address") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="CityTextBox" runat="server" Text='<%# Bind("City") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="RegionTextBox" runat="server" Text='<%# Bind("Region") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="CountryCodeTextBox" runat="server" Text='<%# Bind("CountryCode") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="Postal_CodeTextBox" runat="server" Text='<%# Bind("[Postal Code]") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="LatitudeTextBox" runat="server" Text='<%# Bind("Latitude") %>' />
+                        </td>
+                        <td>
+                            <asp:TextBox ID="LongitudeTextBox" runat="server" Text='<%# Bind("Longitude") %>' />
+                        </td>
+                    </tr>
+                </InsertItemTemplate>
+
+                <ItemTemplate>
+                    <tr style="">
+                        <td>
+                            <asp:Label ID="StoreNumberLabel" runat="server" Text='<%# Eval("StoreNumber") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="AddressLabel" runat="server" Text='<%# Eval("Address") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="CityLabel" runat="server" Text='<%# Eval("City") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="RegionLabel" runat="server" Text='<%# Eval("Region") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="CountryCodeLabel" runat="server" Text='<%# Eval("CountryCode") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="Postal_CodeLabel" runat="server" Text='<%# Eval("[Postal Code]") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="LatitudeLabel" runat="server" Text='<%# Eval("Latitude") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="LongitudeLabel" runat="server" Text='<%# Eval("Longitude") %>' />
                         </td>
                     </tr>
                 </ItemTemplate>
+                <SelectedItemTemplate>
+                    <tr style="">
+                        <td>
+                            <asp:Label ID="StoreNumberLabel" runat="server" Text='<%# Eval("StoreNumber") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="AddressLabel" runat="server" Text='<%# Eval("Address") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="CityLabel" runat="server" Text='<%# Eval("City") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="RegionLabel" runat="server" Text='<%# Eval("Region") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="CountryCodeLabel" runat="server" Text='<%# Eval("CountryCode") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="Postal_CodeLabel" runat="server" Text='<%# Eval("[Postal Code]") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="LatitudeLabel" runat="server" Text='<%# Eval("Latitude") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="LongitudeLabel" runat="server" Text='<%# Eval("Longitude") %>' />
+                        </td>
+                    </tr>
+                </SelectedItemTemplate>
             </asp:ListView>
 
             <asp:SqlDataSource ID="dsSearchResults" runat="server" 
-                ConnectionString="<%$ ConnectionStrings:StoreLocationsConnectionString %>" 
+                ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" 
                 
-                SelectCommand="SELECT StoreNumber, Address, City, Region, CountryCode, PostalCode, Latitude, Longitude, SQRT(POWER(Latitude - @Latitude, 2) + POWER(Longitude - @Longitude, 2)) * 62.1371192 AS DistanceFromAddress FROM Stores WHERE (ABS(Latitude - @Latitude) &lt; 0.25) AND (ABS(Longitude - @Longitude) &lt; 0.25) ORDER BY DistanceFromAddress">
-                <SelectParameters>
-                    <asp:Parameter Name="Latitude" />
-                    <asp:Parameter Name="Longitude" />
-                </SelectParameters>
+                SelectCommand="SELECT * FROM [Stores]">
             </asp:SqlDataSource>
         </ContentTemplate>
     </asp:UpdatePanel>
