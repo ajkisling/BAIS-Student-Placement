@@ -8,21 +8,32 @@
 
 
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" 
+    <asp:SqlDataSource ID="sql_UserProfile" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" 
         
         DeleteCommand="DELETE FROM [aspnet_Users] WHERE [UserID] = @UserID"
 
-        SelectCommand="SELECT UserProfile.FirstName, UserProfile.LastName, UserProfile.City, UserProfile.State, aspnet_Users.UserName, aspnet_Roles.RoleName, UserProfile.UserID FROM UserProfile INNER JOIN aspnet_Users ON UserProfile.UserID = aspnet_Users.UserId INNER JOIN aspnet_Roles ON aspnet_Users.ApplicationId = aspnet_Roles.ApplicationId"></asp:SqlDataSource>
+        SelectCommand="SELECT UserProfile.FirstName, UserProfile.LastName, UserProfile.City, UserProfile.State, aspnet_Users.UserName, aspnet_Roles.RoleName, UserProfile.UserID FROM UserProfile INNER JOIN aspnet_Users ON UserProfile.UserID = aspnet_Users.UserId INNER JOIN aspnet_Roles ON aspnet_Users.ApplicationId = aspnet_Roles.ApplicationId"
     
-        UpdateCommand="
+        UpdateCommand="UPDATE [TR_UserProfile] SET [FirstName] = @FirstName, [LastName] = @LastName, [City] = @City, [State] = @State WHERE [UserID] = @UserID">
 
-        <DeleteParameters></DeleteParameters>
+                <DeleteParameters>
+            <asp:Parameter Name="UserID" Type="Object" />
+        </DeleteParameters>
+                
+        <SelectParameters>
+            <asp:QueryStringParameter Name="UserID" QueryStringField="UserID" />
+        </SelectParameters>
 
-        <SelectParameters></SelectParameters>
-
-        <
-    
+        <UpdateParameters>
+            <asp:Parameter Name="FirstName" Type="String" />
+            <asp:Parameter Name="LastName" Type="String" />
+            <asp:Parameter Name="City" Type="String" />
+            <asp:Parameter Name="State" />
+            <asp:Parameter Name="UserId" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
     <br />
+    <asp:SqlDataSource ID="sql_State" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" SelectCommand="SELECT [StateAbbreviation] FROM [State]"></asp:SqlDataSource>
     <asp:FormView ID="FormView1" runat="server" DataKeyNames="UserID" DataSourceID="SqlDataSource1">
         <EditItemTemplate>
             FirstName:
@@ -34,8 +45,8 @@
             City:
             <asp:TextBox ID="CityTextBox" runat="server" Text='<%# Bind("City") %>' />
             <br />
-            State:
-            <asp:TextBox ID="StateTextBox" runat="server" Text='<%# Bind("State") %>' />
+            <asp:DropDownList ID="ddl_State" runat="server" DataSourceID="sql_State" DataTextField="State" DataValueField="State" SelectedValue='<%# Bind("State") %>'> />
+                </asp:DropDownList>
             <br />
             UserName:
             <asp:TextBox ID="UserNameTextBox" runat="server" Text='<%# Bind("UserName") %>' />
