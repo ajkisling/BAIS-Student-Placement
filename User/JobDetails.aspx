@@ -7,7 +7,11 @@
     <asp:SqlDataSource ID="SqlDataSource_JobDetails" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
 
         DeleteCommand="DELETE FROM [AddJob] WHERE [JobID] = @JobID" 
-        InsertCommand="INSERT INTO [AddJob] ([CompanyID], [JobTitleID], [ProgramID], [TermID], [JobTypeID], [JobDescription], [JobSkill1], [JobSkill2], [JobSkill3], [UserID], [Internship], [PaidIntern]) VALUES (@CompanyID, @JobTitleID, @ProgramID, @TermID, @JobTypeID, @JobDescription, @JobSkill1, @JobSkill2, @JobSkill3, @UserID, @Internship, @PaidIntern)" 
+        
+        InsertCommand="INSERT INTO [AddJob] 
+                        ([CompanyID], [JobTitleID], [ProgramID], [TermID], [JobTypeID], [JobDescription], [JobSkill1], [JobSkill2], [JobSkill3], [Internship], [PaidIntern]) 
+                         VALUES (@CompanyID, @JobTitleID, @ProgramID, @TermID, @JobTypeID, @JobDescription, @JobSkill1, @JobSkill2, @JobSkill3, @Internship, @PaidIntern)" 
+        
         UpdateCommand="UPDATE [AddJob] 
                         SET [CompanyID] = @CompanyID, 
                             [JobTitleID] = @JobTitleID, 
@@ -18,10 +22,10 @@
                             [JobSkill1] = @JobSkill1, 
                             [JobSkill2] = @JobSkill2, 
                             [JobSkill3] = @JobSkill3, 
-                            [UserID] = @UserID, 
                             [Internship] = @Internship, 
                             [PaidIntern] = @PaidIntern 
                             WHERE [JobID] = @JobID"
+
         SelectCommand="SELECT [Company].[CompanyName], 
                             [JobTitle].[JobTitle], 
                             [JobType].[JobType], 
@@ -38,8 +42,7 @@
                             [AddJob].[JobTitleID], 
                             [AddJob].[ProgramID], 
                             [AddJob].[TermID],
-                            [AddJob].[JobTypeID], 
-                            [AddJob].[UserID]
+                            [AddJob].[JobTypeID] 
                     FROM [AddJob], [Majors], [Company], [JobTitle], [JobType], [AcademicTerm], [JobSkills]
                     WHERE ([AddJob].[JobID] = @JobID) 
                         and [AddJob].[CompanyID]=[Company].[CompanyID]
@@ -47,6 +50,7 @@
                         and [AddJob].[JobTypeID]=[JobType].[JobTypeID]
                         and [AddJob].[ProgramID]=[Majors].[ProgramID]
                         and [AddJob].[TermID]=[AcademicTerm].[TermID]">
+
         <SelectParameters>
             <asp:QueryStringParameter Name="JobID" QueryStringField="JobID" Type="Int32" />
         </SelectParameters>
@@ -65,7 +69,6 @@
             <asp:Parameter Name="JobSkill1" Type="String" />
             <asp:Parameter Name="JobSkill2" Type="String" />
             <asp:Parameter Name="JobSkill3" Type="String" />
-            <asp:Parameter Name="UserID" Type="Object" />
             <asp:Parameter Name="Internship" Type="String" />
             <asp:Parameter Name="PaidIntern" Type="String" />
         </InsertParameters>
@@ -80,7 +83,6 @@
             <asp:Parameter Name="JobSkill1" Type="String" />
             <asp:Parameter Name="JobSkill2" Type="String" />
             <asp:Parameter Name="JobSkill3" Type="String" />
-            <asp:Parameter Name="UserID" Type="Object" />
             <asp:Parameter Name="Internship" Type="String" />
             <asp:Parameter Name="PaidIntern" Type="String" />
             <asp:Parameter Name="JobID" Type="Int32" />
@@ -100,10 +102,16 @@
         SelectCommand="SELECT [JobTitleID], [JobTitle] FROM [JobTitle]">
     </asp:SqlDataSource>
     
-    <asp:SqlDataSource ID="SqlDataSource_EditMajor" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" SelectCommand="SELECT [ProgramID], [ProgramDesc] FROM [Majors]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource_EditMajor" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
+        SelectCommand="SELECT [ProgramID], [ProgramDesc] FROM [Majors]">
+    </asp:SqlDataSource>
     
     <asp:SqlDataSource ID="SqlDataSource_EditJobSkills" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
         SelectCommand="SELECT [JobSkillID], [JobSkillDescription] FROM [JobSkills]">
+    </asp:SqlDataSource>
+    
+    <asp:SqlDataSource ID="SqlDataSource_EditAcademicTerm" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
+        SelectCommand="SELECT [SHORT_DESCR], [TermID] FROM [AcademicTerm]">
     </asp:SqlDataSource>
     
     <asp:FormView ID="FormView1" runat="server" DataKeyNames="JobID" DataSourceID="SqlDataSource_JobDetails">
@@ -185,17 +193,35 @@
 
                 <tr>
                     <td align="right">Internship:  </td>
-                    <td align="left"><asp:TextBox ID="tb_Internship" runat="server" Text='<%# Bind("Internship") %>' /></td>
+                    <td align="left">
+                        <asp:RadioButtonList ID="rbl_EditInternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" DataValueField="Internship">
+                            <asp:ListItem>Yes</asp:ListItem>
+                            <asp:ListItem>No</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
                 </tr>
+
                 <tr>
                     <td align="right">Paid:  </td>
-                    <td align="left"><asp:TextBox ID="tb_PaidIntern" runat="server" Text='<%# Bind("PaidIntern") %>' /></td>
+                    <td align="left">
+                        <asp:RadioButtonList ID="rbl_EditPaidInternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" DataValueField="PaidIntern">
+                            <asp:ListItem>Yes</asp:ListItem>
+                            <asp:ListItem>No</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
                 </tr>
                 <tr>
                     <td align="right">Semester:  </td>
-                    <td align="left"><asp:TextBox ID="tb_SHORT_DESCR" runat="server" Text='<%# Bind("SHORT_DESCR") %>' /></td>
+                    <td align="left"><asp:DropDownList ID="ddl_AcademicTerm" runat="server" DataSourceID="SqlDataSource_EditAcademicTerm"
+                            DataTextField="SHORT_DESCR" DataValueField="TermID" SelectedValue='<%# Bind("TermID")%>'>
+                        </asp:DropDownList>
+                    </td>
                 </tr>
             </table>
+
+            <asp:Button ID="btn_UpdateJob" runat="server" CausesValidation="true" CommandName="Update" Text="Update" />
+
+            <asp:Button ID="btn_CancelJobUpdate" runat="server" CausesValidation="true" CommandName="Cancel" Text="Cancel" />
 
         </EditItemTemplate>
 
@@ -263,6 +289,8 @@
         </ItemTemplate>
 
     </asp:FormView>
+
+<asp:Label ID="lbl_DeletedJob" runat="server" Text=""></asp:Label>
 
 </asp:Content>
 
