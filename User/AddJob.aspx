@@ -78,7 +78,7 @@
         </asp:SqlDataSource>
 
         <asp:SqlDataSource ID="SqlDataSource_JobSkills" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
-            SelectCommand="SELECT [JobSkillID], [JobSkillDescription] FROM [JobSkills]">
+            SelectCommand="SELECT [JobSkill1], [JobSkill2], [JobSkill3], [JobSkillDescription] FROM [JobSkills]">
         </asp:SqlDataSource>
 
         <asp:SqlDataSource ID="SqlDataSource_JobTitle" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
@@ -107,15 +107,15 @@
                     <br />
                 <asp:Label ID="lbl_AddJobSkills" runat="server" Text="Add Job Skills:  " Font-Bold="True"></asp:Label>
                 <asp:Label ID="lbl_JobSkill1" runat="server" Text="1:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_JobSkill1" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkillID" SelectedValue='<%# Bind("JobSkillDescription")%>'>
+                <asp:DropDownList ID="ddl_JobSkill1" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkill1" SelectedValue='<%# Bind("JobSkillDescription")%>'>
                 </asp:DropDownList>
                     <br />
                 <asp:Label ID="lbl_JobSkill2" runat="server" Text="2:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_JobSkill2" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkillID" SelectedValue='<%# Bind("JobSkillDescription")%>'>
+                <asp:DropDownList ID="ddl_JobSkill2" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkill2" SelectedValue='<%# Bind("JobSkillDescription")%>'>
                 </asp:DropDownList>
                     <br />
                 <asp:Label ID="lbl_JobSkill3" runat="server" Text="3:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_JobSkill3" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkillID" SelectedValue='<%# Bind("JobSkillDescription")%>'>
+                <asp:DropDownList ID="ddl_JobSkill3" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkill3" SelectedValue='<%# Bind("JobSkillDescription")%>'>
                 </asp:DropDownList>
                     <br />
                 <asp:Label ID="lbl_JobDescription" runat="server" Text="Job Description:    " Style="vertical-align: top;" Font-Bold="True"></asp:Label>

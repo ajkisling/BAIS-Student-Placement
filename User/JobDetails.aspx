@@ -32,6 +32,7 @@
                             [AddJob].[JobSkill1], 
                             [AddJob].[JobSkill2], 
                             [AddJob].[JobSkill3],
+                            [JobSkills].[JobSkillDescription],
                             [AddJob].[JobDescription],  
                             [Majors].[ProgramDesc],
                             [AddJob].[Internship], 
@@ -49,6 +50,7 @@
                         and [AddJob].[JobTitleID]=[JobTitle].[JobTitleID]
                         and [AddJob].[JobTypeID]=[JobType].[JobTypeID]
                         and [AddJob].[ProgramID]=[Majors].[ProgramID]
+                        and [AddJob].[JobSkill1]=[JobSkills].[JobSkill1]
                         and [AddJob].[TermID]=[AcademicTerm].[TermID]">
 
         <SelectParameters>
@@ -107,7 +109,7 @@
     </asp:SqlDataSource>
     
     <asp:SqlDataSource ID="SqlDataSource_EditJobSkills" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
-        SelectCommand="SELECT [JobSkillID], [JobSkillDescription] FROM [JobSkills]">
+        SelectCommand="SELECT [JobSkill1], [JobSkill2], [JobSkill3], [JobSkillDescription] FROM [JobSkills]">
     </asp:SqlDataSource>
     
     <asp:SqlDataSource ID="SqlDataSource_EditAcademicTerm" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
@@ -155,7 +157,7 @@
                     <td align="right">Skill 1:  </td>
                     <td align="left">
                         <asp:DropDownList ID="ddl_EditJobSkill1" runat="server" DataSourceID="SqlDataSource_EditJobSkills"
-                            DataValueField="JobSkillID" DataTextField="JobSkillDescription">
+                            DataValueField="JobSkill1" DataTextField="JobSkillDescription" SelectedValue='<%# Bind("JobSkill1")%>'>
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -164,7 +166,7 @@
                     <td align="right">Skill 2:  </td>
                     <td align="left">
                         <asp:DropDownList ID="ddl_EditJobSkill2" runat="server" DataSourceID="SqlDataSource_EditJobSkills"
-                            DataTextField="JobSkillDescription" DataValueField="JobSkillID">
+                             DataValueField="JobSkill2" DataTextField="JobSkillDescription" SelectedValue='<%# Bind("JobSkill2")%>'>
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -173,7 +175,7 @@
                     <td align="right">Skill 3:  </td>
                     <td align="left">
                         <asp:DropDownList ID="ddl_EditJobSkill3" runat="server" DataSourceID="SqlDataSource_EditJobSkills"
-                            DataTextField="JobSkillDescription" DataValueField="JobSkillID">
+                             DataValueField="JobSkill3" DataTextField="JobSkillDescription" SelectedValue='<%# Bind("JobSkill3")%>'>
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -250,15 +252,15 @@
                 </tr>
                 <tr>
                     <td align="right">Skill 1:  </td>
-                    <td align="left"><asp:Label ID="JobSkill1Label" runat="server" Text='<%# Bind("JobSkill1") %>' /></td>
+                    <td align="left"><asp:Label ID="JobSkill1Label" runat="server" Text='<%# Bind("JobSkillDescription")%>' /></td>
                 </tr>
                 <tr>
                     <td align="right">Skill 2:  </td>
-                    <td align="left"><asp:Label ID="JobSkill2Label" runat="server" Text='<%# Bind("JobSkill2") %>' /></td>
+                    <td align="left"><asp:Label ID="JobSkill2Label" runat="server" Text='<%# Bind("JobSkillDescription")%>' /></td>
                 </tr>
                 <tr>
                     <td align="right">Skill 3:  </td>
-                    <td align="left"><asp:Label ID="JobSkill3Label" runat="server" Text='<%# Bind("JobSkill3") %>' /></td>
+                    <td align="left"><asp:Label ID="JobSkill3Label" runat="server" Text='<%# Bind("JobSkillDescription")%>' /></td>
                 </tr>
                 <tr>
                     <td align="right">Description:  </td>
