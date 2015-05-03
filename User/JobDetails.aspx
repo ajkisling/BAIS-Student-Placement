@@ -7,11 +7,7 @@
     <asp:SqlDataSource ID="SqlDataSource_JobDetails" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
 
         DeleteCommand="DELETE FROM [AddJob] WHERE [JobID] = @JobID" 
-        
-        InsertCommand="INSERT INTO [AddJob] 
-                        ([CompanyID], [JobTitleID], [ProgramID], [TermID], [JobTypeID], [JobDescription], [JobSkill1], [JobSkill2], [JobSkill3], [Internship], [PaidIntern]) 
-                         VALUES (@CompanyID, @JobTitleID, @ProgramID, @TermID, @JobTypeID, @JobDescription, @JobSkill1, @JobSkill2, @JobSkill3, @Internship, @PaidIntern)" 
-        
+                
         UpdateCommand="UPDATE [AddJob] 
                         SET [CompanyID] = @CompanyID, 
                             [JobTitleID] = @JobTitleID, 
@@ -26,32 +22,39 @@
                             [PaidIntern] = @PaidIntern 
                             WHERE [JobID] = @JobID"
 
-        SelectCommand="SELECT [Company].[CompanyName], 
-                            [JobTitle].[JobTitle], 
-                            [JobType].[JobType], 
-                            [AddJob].[JobSkill1], 
-                            [AddJob].[JobSkill2], 
-                            [AddJob].[JobSkill3],
-                            [JobSkills].[JobSkillDescription],
-                            [AddJob].[JobDescription],  
-                            [Majors].[ProgramDesc],
-                            [AddJob].[Internship], 
-                            [AddJob].[PaidIntern],
-                            [AcademicTerm].[SHORT_DESCR],
-                            [AddJob].[JobID], 
-                            [AddJob].[CompanyID], 
-                            [AddJob].[JobTitleID], 
-                            [AddJob].[ProgramID], 
-                            [AddJob].[TermID],
-                            [AddJob].[JobTypeID] 
-                    FROM [AddJob], [Majors], [Company], [JobTitle], [JobType], [AcademicTerm], [JobSkills]
-                    WHERE ([AddJob].[JobID] = @JobID) 
-                        and [AddJob].[CompanyID]=[Company].[CompanyID]
-                        and [AddJob].[JobTitleID]=[JobTitle].[JobTitleID]
-                        and [AddJob].[JobTypeID]=[JobType].[JobTypeID]
-                        and [AddJob].[ProgramID]=[Majors].[ProgramID]
-                        and [AddJob].[JobSkill1]=[JobSkills].[JobSkill1]
-                        and [AddJob].[TermID]=[AcademicTerm].[TermID]">
+        SelectCommand="SELECT Company.CompanyName, 
+                        JobTitle.JobTitle, 
+                        JobType.JobType,  
+                        AddJob.JobSkill1, 
+                        AddJob.JobSkill2, 
+                        AddJob.JobSkill3, 
+                        JobSkills.JobSkillDescription,  
+                        AddJob.JobDescription, 
+                        Majors.ProgramDesc, 
+                        AddJob.Internship, 
+                        AddJob.PaidIntern, 
+                        AcademicTerm.SHORT_DESCR, 
+                        AddJob.JobID, 
+                        AddJob.CompanyID, 
+                        AddJob.JobTitleID, 
+                        AddJob.ProgramID, 
+                        AddJob.TermID, 
+                        AddJob.JobTypeID, 
+                        JobTitle.JobTitleID AS Expr1, 
+                        Company.CompanyID AS Expr2, 
+                        Majors.ProgramID AS Expr3, 
+                        AcademicTerm.TermID AS Expr4, 
+                        JobType.JobTypeID AS Expr5, 
+                        JobSkills.JobSkill3 AS Expr6, 
+                        JobSkills.JobSkill2 AS Expr7, 
+                        JobSkills.JobSkill1 AS Expr8 
+                    FROM AddJob LEFT OUTER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 
+                        LEFT OUTER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID 
+                        LEFT OUTER JOIN AcademicTerm ON AddJob.TermID = AcademicTerm.TermID 
+                        LEFT OUTER JOIN Majors ON AddJob.ProgramID = Majors.ProgramID 
+                        LEFT OUTER JOIN Company ON AddJob.CompanyID = Company.CompanyID 
+                        LEFT OUTER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID 
+                    WHERE (AddJob.JobID = @JobID)">
 
         <SelectParameters>
             <asp:QueryStringParameter Name="JobID" QueryStringField="JobID" Type="Int32" />
@@ -61,20 +64,6 @@
             <asp:Parameter Name="JobID" Type="Int32" />
         </DeleteParameters>
         
-        <InsertParameters>
-            <asp:Parameter Name="CompanyID" Type="Int32" />
-            <asp:Parameter Name="JobTitleID" Type="Int32" />
-            <asp:Parameter Name="ProgramID" Type="Int32" />
-            <asp:Parameter Name="TermID" Type="Int32" />
-            <asp:Parameter Name="JobTypeID" Type="Int32" />
-            <asp:Parameter Name="JobDescription" Type="String" />
-            <asp:Parameter Name="JobSkill1" Type="String" />
-            <asp:Parameter Name="JobSkill2" Type="String" />
-            <asp:Parameter Name="JobSkill3" Type="String" />
-            <asp:Parameter Name="Internship" Type="String" />
-            <asp:Parameter Name="PaidIntern" Type="String" />
-        </InsertParameters>
-        
         <UpdateParameters>
             <asp:Parameter Name="CompanyID" Type="Int32" />
             <asp:Parameter Name="JobTitleID" Type="Int32" />
@@ -82,9 +71,9 @@
             <asp:Parameter Name="TermID" Type="Int32" />
             <asp:Parameter Name="JobTypeID" Type="Int32" />
             <asp:Parameter Name="JobDescription" Type="String" />
-            <asp:Parameter Name="JobSkill1" Type="String" />
-            <asp:Parameter Name="JobSkill2" Type="String" />
-            <asp:Parameter Name="JobSkill3" Type="String" />
+            <asp:Parameter Name="JobSkill1" Type="Int32" />
+            <asp:Parameter Name="JobSkill2" Type="Int32" />
+            <asp:Parameter Name="JobSkill3" Type="Int32" />
             <asp:Parameter Name="Internship" Type="String" />
             <asp:Parameter Name="PaidIntern" Type="String" />
             <asp:Parameter Name="JobID" Type="Int32" />
@@ -252,15 +241,15 @@
                 </tr>
                 <tr>
                     <td align="right">Skill 1:  </td>
-                    <td align="left"><asp:Label ID="JobSkill1Label" runat="server" Text='<%# Bind("JobSkillDescription")%>' /></td>
+                    <td align="left"><asp:Label ID="JobSkill1Label" runat="server" Text='<%# Bind("JobSkill1")%>' /></td>                
                 </tr>
                 <tr>
                     <td align="right">Skill 2:  </td>
-                    <td align="left"><asp:Label ID="JobSkill2Label" runat="server" Text='<%# Bind("JobSkillDescription")%>' /></td>
+                    <td align="left"><asp:Label ID="JobSkill2Label" runat="server" Text='<%# Bind("JobSkill2")%>' /></td>
                 </tr>
                 <tr>
                     <td align="right">Skill 3:  </td>
-                    <td align="left"><asp:Label ID="JobSkill3Label" runat="server" Text='<%# Bind("JobSkillDescription")%>' /></td>
+                    <td align="left"><asp:Label ID="JobSkill3Label" runat="server" Text='<%# Bind("JobSkill3")%>' /></td>
                 </tr>
                 <tr>
                     <td align="right">Description:  </td>

@@ -45,7 +45,7 @@
             City:
             <asp:TextBox ID="CityTextBox" runat="server" Text='<%# Bind("City") %>' />
             <br />
-            <asp:DropDownList ID="ddl_State" runat="server" DataSourceID="sql_State" DataTextField="State" DataValueField="State" SelectedValue='<%# Bind("State") %>'> />
+            <asp:DropDownList ID="ddl_State" runat="server" DataSourceID="sql_State" DataTextField="State" DataValueField="State" SelectedValue='<%# Bind("State") %>'>
                 </asp:DropDownList>
             <br />
             UserName:
@@ -110,7 +110,7 @@
 
             <asp:Button ID="EditButton" runat="server" CausesValidation="false" CommandName="Edit" Text="Edit" />
             &nbsp;
-            <asp:Button ID="DeleteButton" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete" OnClick="DeleteButton_Click" OnClientClick="return confirm ('Are you sure you want to delete this user record?')" /> 
+            <asp:Button ID="DeleteButton" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete" OnClientClick="return confirm ('Are you sure you want to delete this user record?')" /> 
 
         </ItemTemplate>
     </asp:FormView>
