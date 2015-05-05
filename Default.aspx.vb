@@ -20,7 +20,7 @@ Partial Class _Default
         searchtype = "Select * From dbo.JobType where (JobType Like '%" + rbl_jobtype.ToString() + "%')"
         sql_combo.SelectCommand = searchtype
 
-        searchstate = "Select * From dbo.Company where (StateName Like '%" + ddl_state.Text.ToString() + "%')"
+        searchstate = "Select * From dbo.State where (StateName Like '%" + ddl_state.Text.ToString() + "%')"
         sql_combo.SelectCommand = searchstate
 
         searchskills = "Select * From dbo.JobSkills where (JobSkillDescription Like '%" + tb_skills.Text.ToString() + "%')"

@@ -12,55 +12,52 @@ In porttitor ante velit, nec tempor leo malesuada sed. Donec nec tincidunt velit
 Donec rhoncus, sem semper facilisis aliquet, erat massa interdum urna, vehicula lobortis magna augue ut ante. Ut a semper ligula. Aliquam sit amet imperdiet risus. Vivamus et mollis ante, sed egestas risus. Cras vitae dapibus nisl, gravida vestibulum lorem. Vestibulum varius nulla dui, vel tempor ante pulvinar vel. Donec et sapien non leo efficitur pharetra. Aenean vehicula venenatis porttitor. Nullam mattis fermentum porttitor. Sed gravida massa nibh, in mollis est malesuada eget. Quisque at sagittis leo.
 
 Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravida nec nulla ut, pharetra dictum ex. Curabitur at erat volutpat, facilisis ex id, mollis sapien. In felis lacus, pulvinar at facilisis a, aliquet a odio. Donec aliquam leo eleifend ex placerat, condimentum convallis purus gravida. Integer iaculis tempus lorem, non convallis diam condimentum in. Aliquam sed ligula nec sapien commodo sodales. Proin tristique quis ante eget interdum. Praesent eu luctus nisl, sit amet sagittis sapien.</p>
-     
-    
-    
-    
-    <asp:SqlDataSource ID="sql_Company" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [Company]"></asp:SqlDataSource>
-     <asp:SqlDataSource ID="sql_JobTitle" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobTitle]"></asp:SqlDataSource>
      <asp:SqlDataSource ID="sql_JobType" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobType]"></asp:SqlDataSource>
-     <asp:SqlDataSource ID="sql_Jobskills" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobSkills]"></asp:SqlDataSource>
      <asp:SqlDataSource ID="sql_State" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [State]"></asp:SqlDataSource>
      <br />
-     <asp:Label ID="lbl_CompName" runat="server" Text="Company Name:"></asp:Label>
-&nbsp;&nbsp;&nbsp;
-     <asp:TextBox ID="tb_compName" runat="server"></asp:TextBox>
-     <br />
-     <asp:Label ID="lbl_JobTitle" runat="server" Text="Job Title:"></asp:Label>
-&nbsp;&nbsp;&nbsp;
-     <asp:TextBox ID="tb_jobTitle" runat="server"></asp:TextBox>
-     <br />
-     <asp:RadioButtonList ID="rbl_jobtype" runat="server" DataSourceID="sql_JobType" DataTextField="JobType" DataValueField="JobType">
-         <asp:ListItem>Full-Time</asp:ListItem>
+    <table>
+        
+       <tr>
+            <td><asp:Label ID="lbl_CompName" runat="server" Text="Company Name:"></asp:Label></td>
+            <td><asp:TextBox ID="tb_compName" runat="server"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td><asp:Label ID="lbl_JobTitle" runat="server" Text="Job Title:"></asp:Label></td>
+            <td><asp:TextBox ID="tb_jobTitle" runat="server"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td><asp:RadioButtonList ID="rbl_jobtype" runat="server" DataSourceID="sql_JobType" DataTextField="JobType" DataValueField="JobType">
+            <asp:ListItem>Full-Time</asp:ListItem>
          <asp:ListItem>Internship</asp:ListItem>
-     </asp:RadioButtonList>
-     <asp:Label ID="lbl_state" runat="server" Text="State:"></asp:Label>
-&nbsp;&nbsp;&nbsp;
-     <asp:DropDownList ID="ddl_state" runat="server" DataSourceID="sql_State" DataTextField="StateName" DataValueField="StateName">
-     </asp:DropDownList>
-     <br />
-     <asp:Label ID="lbl_skills" runat="server" Text="Skills:"></asp:Label>
-&nbsp;&nbsp;&nbsp;
-     <asp:TextBox ID="tb_skills" runat="server"></asp:TextBox>
-     <br />
-     &nbsp;&nbsp;
-     <br />
-     <asp:Button ID="btn_search" runat="server" Text="Search" />
-&nbsp;<br />
+     </asp:RadioButtonList></td>
+        </tr>
+        <tr>
+            <td><asp:Label ID="lbl_state" runat="server" Text="State:"></asp:Label></td>
+            <td><asp:DropDownList ID="ddl_state" runat="server" DataSourceID="sql_State" DataTextField="StateName" DataValueField="StateName">
+     </asp:DropDownList></td>
+        </tr>
+        <tr>
+            <td><asp:Label ID="lbl_skills" runat="server" Text="Skills:"></asp:Label></td>
+            <td><asp:TextBox ID="tb_skills" runat="server"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td><asp:Button ID="btn_search" runat="server" Text="Search" /></td>
+        </tr>
+    </table> 
+    &nbsp;<br />
      <br />
      <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="sql_combo" AllowPaging="True" AllowSorting="True">
          <Columns>
              <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName" />
              <asp:BoundField DataField="CompanyAddress" HeaderText="CompanyAddress" SortExpression="CompanyAddress" />
              <asp:BoundField DataField="CompanyCity" HeaderText="CompanyCity" SortExpression="CompanyCity" />
-             <asp:BoundField DataField="CompanyZip" HeaderText="CompanyZip" SortExpression="CompanyZip" />
+             <asp:BoundField DataField="StateName" HeaderText="StateName" SortExpression="StateName" />
              <asp:BoundField DataField="JobTitle" HeaderText="JobTitle" SortExpression="JobTitle" />
              <asp:BoundField DataField="JobType" HeaderText="JobType" SortExpression="JobType" />
-             <asp:BoundField DataField="StateName" HeaderText="StateName" SortExpression="StateName" />
              <asp:BoundField DataField="JobSkillDescription" HeaderText="JobSkillDescription" SortExpression="JobSkillDescription" />
          </Columns>
      </asp:GridView>
-     <asp:SqlDataSource ID="sql_combo" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, State.StateName, Company.CompanyAddress, Company.CompanyCity, Company.CompanyZip, JobTitle.JobTitle, JobType.JobType, JobSkills.JobSkillDescription FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID INNER JOIN State ON Company.StateID = State.StateID"></asp:SqlDataSource>
+     <asp:SqlDataSource ID="sql_combo" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, State.StateName, JobTitle.JobTitle, JobType.JobType, JobSkills.JobSkillDescription, Company.CompanyAddress, Company.CompanyCity FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID INNER JOIN State ON Company.StateID = State.StateID"></asp:SqlDataSource>
      <br />
      <br />
 &nbsp;
