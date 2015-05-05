@@ -38,8 +38,10 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
 &nbsp;&nbsp;&nbsp;
      <asp:TextBox ID="tb_skills" runat="server"></asp:TextBox>
      <br />
-     &nbsp;&nbsp;&nbsp;
+     &nbsp;&nbsp;
      <br />
+     <asp:Button ID="btn_search" runat="server" Text="Search" />
+&nbsp;<br />
 &nbsp;
 
 
