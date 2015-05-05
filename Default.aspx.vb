@@ -11,20 +11,20 @@ Partial Class _Default
 
 
 
-        searchcomp = "Select * From dbo.PlacementDB2 where (CompanyName Like '%" + tb_compName.Text.ToString() + "%')"
-        sql_Company.SelectCommand = searchcomp
+        searchcomp = "Select * From dbo.Company where (CompanyName Like '%" + tb_compName.Text.ToString() + "%')"
+        sql_combo.SelectCommand = searchcomp
 
-        searchtitle = "Select * From dbo.PlacementDB2 where (JobTitle Like '%" + tb_jobTitle.Text.ToString() + "%')"
-        sql_Company.SelectCommand = searchtitle
+        searchtitle = "Select * From dbo.JobTitle where (JobTitle Like '%" + tb_jobTitle.Text.ToString() + "%')"
+        sql_combo.SelectCommand = searchtitle
 
-        searchtype = "Select * From dbo.PlacementDB2 where (JobType Like '%" + rbl_jobtype.ToString() + "%')"
-        sql_Company.SelectCommand = searchtype
+        searchtype = "Select * From dbo.JobType where (JobType Like '%" + rbl_jobtype.ToString() + "%')"
+        sql_combo.SelectCommand = searchtype
 
-        searchstate = "Select * From dbo.PlacementDB2 where (StateName Like '%" + ddl_state.Text.ToString() + "%')"
-        sql_Company.SelectCommand = searchstate
+        searchstate = "Select * From dbo.Company where (StateName Like '%" + ddl_state.Text.ToString() + "%')"
+        sql_combo.SelectCommand = searchstate
 
-        searchskills = "Select * From dbo.PlacementDB2 where (JobSkillDescription Like '%" + tb_skills.Text.ToString() + "%')"
-        sql_Company.SelectCommand = searchskills
+        searchskills = "Select * From dbo.JobSkills where (JobSkillDescription Like '%" + tb_skills.Text.ToString() + "%')"
+        sql_combo.SelectCommand = searchskills
     End Sub
 
 End Class

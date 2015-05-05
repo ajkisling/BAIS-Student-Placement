@@ -15,8 +15,9 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
      <asp:SqlDataSource ID="sql_Company" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [Company]"></asp:SqlDataSource>
      <asp:SqlDataSource ID="sql_JobTitle" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobTitle]"></asp:SqlDataSource>
      <asp:SqlDataSource ID="sql_JobType" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobType]"></asp:SqlDataSource>
-     <asp:SqlDataSource ID="sql_State" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [State]"></asp:SqlDataSource>
      <asp:SqlDataSource ID="sql_Jobskills" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobSkills]"></asp:SqlDataSource>
+     <asp:SqlDataSource ID="sql_State" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [State]"></asp:SqlDataSource>
+     <br />
      <asp:Label ID="lbl_CompName" runat="server" Text="Company Name:"></asp:Label>
 &nbsp;&nbsp;&nbsp;
      <asp:TextBox ID="tb_compName" runat="server"></asp:TextBox>
@@ -43,8 +44,19 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
      <asp:Button ID="btn_search" runat="server" Text="Search" />
 &nbsp;<br />
      <br />
-     <asp:GridView ID="GridView1" runat="server">
+     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="sql_combo">
+         <Columns>
+             <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName" />
+             <asp:BoundField DataField="CompanyAddress" HeaderText="CompanyAddress" SortExpression="CompanyAddress" />
+             <asp:BoundField DataField="CompanyCity" HeaderText="CompanyCity" SortExpression="CompanyCity" />
+             <asp:BoundField DataField="CompanyZip" HeaderText="CompanyZip" SortExpression="CompanyZip" />
+             <asp:BoundField DataField="JobTitle" HeaderText="JobTitle" SortExpression="JobTitle" />
+             <asp:BoundField DataField="JobType" HeaderText="JobType" SortExpression="JobType" />
+             <asp:BoundField DataField="StateName" HeaderText="StateName" SortExpression="StateName" />
+             <asp:BoundField DataField="JobSkillDescription" HeaderText="JobSkillDescription" SortExpression="JobSkillDescription" />
+         </Columns>
      </asp:GridView>
+     <asp:SqlDataSource ID="sql_combo" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, State.StateName, Company.CompanyAddress, Company.CompanyCity, Company.CompanyZip, JobTitle.JobTitle, JobType.JobType, JobSkills.JobSkillDescription FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID INNER JOIN State ON Company.StateID = State.StateID"></asp:SqlDataSource>
      <br />
      <br />
 &nbsp;
