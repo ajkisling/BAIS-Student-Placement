@@ -25,7 +25,7 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
 &nbsp;&nbsp;&nbsp;
      <asp:TextBox ID="tb_jobTitle" runat="server"></asp:TextBox>
      <br />
-     <asp:RadioButtonList ID="RadioButtonList1" runat="server" DataSourceID="sql_JobType" DataTextField="JobType" DataValueField="JobType">
+     <asp:RadioButtonList ID="rbl_jobtype" runat="server" DataSourceID="sql_JobType" DataTextField="JobType" DataValueField="JobType">
          <asp:ListItem>Full-Time</asp:ListItem>
          <asp:ListItem>Internship</asp:ListItem>
      </asp:RadioButtonList>
@@ -42,6 +42,11 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
      <br />
      <asp:Button ID="btn_search" runat="server" Text="Search" />
 &nbsp;<br />
+     <br />
+     <asp:GridView ID="GridView1" runat="server">
+     </asp:GridView>
+     <br />
+     <br />
 &nbsp;
 
 
