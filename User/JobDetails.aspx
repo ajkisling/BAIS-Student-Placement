@@ -298,7 +298,7 @@
       You are viewing a map of Iowa City!
    </p>
     
-    <script type="text/javascript">
+ <%--   <script type="text/javascript">
         init_map('my_map', 41.6611277, -91.5301683, 10);
 
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -307,7 +307,10 @@
             position: myLatlng,
             map: map,
             title: 'Hello World!'});
-        </script>
+        </script>--%>
+
+    <iframe width="600" height="450" frameborder="0" style="border:0" 
+        src="https://www.google.com/maps/embed/v1/place?q=711%20High%20Street%2C%20Des%20Moines%2C%20IA%2C%20United%20States&key=AIzaSyCSvSuphj2pDdMeBD_K8XWAdD1EMG88hdo"></iframe>
 <asp:Label ID="lbl_DeletedJob" runat="server" Text=""></asp:Label>
 
 </asp:Content>

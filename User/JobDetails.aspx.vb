@@ -19,3 +19,7 @@ Partial Class User_JobDetails
     End Sub
 
 End Class
+
+
+
+

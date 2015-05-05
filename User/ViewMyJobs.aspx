@@ -4,8 +4,28 @@
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
       
-    
     <script type="text/javascript">
+        
+        var markers =
+            [
+                {
+                    title: "National Art Museum",
+                    position: new google.maps.LatLng(19.4351262, -99.1334024)
+                },
+                {
+                    title: "Viceroyal Painting Gallery",
+                    position: new google.maps.LatLng(19.4331008, -99.1492114)
+                },
+                {
+                    title: "Carmelitan Museum",
+                    position: new google.maps.LatLng(19.3028860, -99.2352628)
+                },
+                {
+                    title: "San Carlos Museum",
+                    position: new google.maps.LatLng(19.3201515, -99.2265153)
+                }
+            ];
+
         function init_map(map_canvas_id, lat, lng, zoomLevel) {
             var myLatLng = new google.maps.LatLng(41.6611277,-91.5301683);
             var options = {
@@ -15,8 +35,7 @@
             };
             var map_canvas = document.getElementById(map_canvas_id);
             var map = new google.maps.Map(map_canvas, options);
-        }
-       
+        }    
    </script>
 
 </asp:Content>
@@ -37,31 +56,20 @@
    <p>
       You are viewing a map of Iowa City!
    </p>
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         init_map('my_map', 41.6611277, -91.5301683, 10);
 
-        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        var map = new google.maps.Map(document.getElementById('map-canvas'), Options);
 
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
             title: 'Hello World!'
         });
-    
-        
-        
-        
-        </script>
+        </script>--%>
 
-  
-    
-    
-    
-    
-    
-    
-    
-    
+    <iframe src="https://www.google.com/maps/d/embed?mid=zmsRBQI0f6Io.kwRFYCutOcbE" width="640" height="480"></iframe>
+
     <asp:SqlDataSource ID="SqlDataSource_ViewMyJobs" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
         SelectCommand="SELECT AddJob.JobID, Company.CompanyName, JobTitle.JobTitle, JobType.JobType, AddJob.Internship FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID">
     </asp:SqlDataSource>
