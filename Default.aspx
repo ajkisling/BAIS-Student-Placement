@@ -44,7 +44,7 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
      <asp:Button ID="btn_search" runat="server" Text="Search" />
 &nbsp;<br />
      <br />
-     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="sql_combo">
+     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="sql_combo" AllowPaging="True" AllowSorting="True">
          <Columns>
              <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName" />
              <asp:BoundField DataField="CompanyAddress" HeaderText="CompanyAddress" SortExpression="CompanyAddress" />

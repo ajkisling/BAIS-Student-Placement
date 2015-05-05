@@ -11,7 +11,7 @@ Partial Class _Default
 
 
 
-        searchcomp = "Select * From dbo.Company where (CompanyName Like '%" + tb_compName.Text.ToString() + "%')"
+        searchcomp = "Select * From dbo.Company where (Company.CompanyName Like '%" + tb_compName.Text.ToString() + "%')"
         sql_combo.SelectCommand = searchcomp
 
         searchtitle = "Select * From dbo.JobTitle where (JobTitle Like '%" + tb_jobTitle.Text.ToString() + "%')"
