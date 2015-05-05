@@ -46,7 +46,8 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
     </table> 
     &nbsp;<br />
      <br />
-     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="sql_combo" AllowPaging="True" AllowSorting="True">
+     <asp:SqlDataSource ID="sql_combo" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, State.StateName, JobTitle.JobTitle, JobType.JobType, JobSkills.JobSkillDescription, Company.CompanyAddress, Company.CompanyCity FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID INNER JOIN State ON Company.StateID = State.StateID"></asp:SqlDataSource>
+     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="True" DataSourceID="sql_combo" AllowPaging="True" AllowSorting="True">
          <Columns>
              <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName" />
              <asp:BoundField DataField="CompanyAddress" HeaderText="CompanyAddress" SortExpression="CompanyAddress" />
@@ -57,10 +58,8 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
              <asp:BoundField DataField="JobSkillDescription" HeaderText="JobSkillDescription" SortExpression="JobSkillDescription" />
          </Columns>
      </asp:GridView>
-     <asp:SqlDataSource ID="sql_combo" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, State.StateName, JobTitle.JobTitle, JobType.JobType, JobSkills.JobSkillDescription, Company.CompanyAddress, Company.CompanyCity FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID INNER JOIN State ON Company.StateID = State.StateID"></asp:SqlDataSource>
      <br />
      <br />
-&nbsp;
 
 
 
