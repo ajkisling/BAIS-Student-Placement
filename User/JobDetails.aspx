@@ -24,22 +24,10 @@
 
         DeleteCommand="DELETE FROM [AddJob] WHERE [JobID] = @JobID" 
                 
-        UpdateCommand="UPDATE [AddJob] 
-                        SET [CompanyID] = @CompanyID, 
-                            [JobTitleID] = @JobTitleID, 
-                            [ProgramID] = @ProgramID, 
-                            [TermID] = @TermID, 
-                            [JobTypeID] = @JobTypeID, 
-                            [JobDescription] = @JobDescription, 
-                            [JobSkill1] = @JobSkill1, 
-                            [JobSkill2] = @JobSkill2, 
-                            [JobSkill3] = @JobSkill3, 
-                            [Internship] = @Internship, 
-                            [PaidIntern] = @PaidIntern 
-                            WHERE [JobID] = @JobID"
+        UpdateCommand="UPDATE AddJob SET CompanyID = @CompanyID, JobTitleID = @JobTitleID, ProgramID = @ProgramID, TermID = @TermID, JobTypeID = @JobTypeID, JobDescription = @JobDescription, JobSkill1 = @JobSkill1, JobSkill2 = @JobSkill2, JobSkill3 = @JobSkill3, Internship = @Internship, PaidIntern = @PaidIntern WHERE (JobID = @JobID)"
 
         SelectCommand="SELECT AddJob.JobID, 
-                            AddJob.CompanyID, Company.CompanyName, Company.CompanyAddress, Company.CompanyCity, Company.CompanyZip, Company.StateID,
+                            AddJob.CompanyID, Company.CompanyName, Company.CompanyAddress, Company.CompanyCity, Company.CompanyZip, Company.State,
                             AddJob.JobTitleID, JobTitle.JobTitle, 
                             AddJob.JobTypeID, JobType.JobType, 
                             AddJob.JobSkill1, jsd1.JobSkillDescription AS JobSkillDescription1,
@@ -56,7 +44,7 @@
                                 LEFT OUTER JOIN AcademicTerm ON AddJob.TermID = AcademicTerm.TermID 
                                 LEFT OUTER JOIN Majors ON AddJob.ProgramID = Majors.ProgramID 
                                 LEFT OUTER JOIN Company ON AddJob.CompanyID = Company.CompanyID 
-                                LEFT OUTER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID 
+                                LEFT OUTER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID
                             WHERE (AddJob.JobID = @JobID)">
 
         <SelectParameters>
@@ -79,7 +67,7 @@
             <asp:Parameter Name="JobSkill3" Type="Int32" />
             <asp:Parameter Name="Internship" Type="String" />
             <asp:Parameter Name="PaidIntern" Type="String" />
-            <asp:Parameter Name="JobID" Type="Int32" />
+            <asp:QueryStringParameter Name="JobID" QueryStringField="JobID" Type="Int32" />
         </UpdateParameters>
 
     </asp:SqlDataSource>
@@ -108,6 +96,14 @@
         SelectCommand="SELECT [SHORT_DESCR], [TermID] FROM [AcademicTerm]">
     </asp:SqlDataSource>
     
+    <asp:SqlDataSource ID="SqlDataSource_rblInternship" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
+        SelectCommand="SELECT DISTINCT [Internship] FROM [AddJob] WHERE Internship is not null ORDER BY Internship DESC">
+    </asp:SqlDataSource>
+    
+    <asp:SqlDataSource ID="SqlDataSource_rblPaidIntern" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
+        SelectCommand="SELECT DISTINCT [PaidIntern] FROM [AddJob] WHERE ([PaidIntern] IS NOT NULL) ORDER BY PaidIntern DESC">
+    </asp:SqlDataSource>
+    
     <asp:FormView ID="FormView1" runat="server" DataKeyNames="JobID" DataSourceID="SqlDataSource_JobDetails" Width="746px">
 
         <EditItemTemplate>
@@ -115,15 +111,20 @@
             <table id="jobEdit">
                 <tr>
                     <th>Job ID:  </th>
-                    <td><asp:Label ID="JobID" runat="server" enabled="false" Text='<%# Bind("JobID")%>' /></td>
+                    <td><asp:Label ID="JobID" runat="server" enabled="false" Text='<%# Bind("JobID")%>' DataValueField="JobID" /></td>
                 </tr>
 
                 <tr>
                     <th>Company:  </th>
                     <td>
                         <asp:DropDownList ID="ddl_CompanyEdit" runat="server" DataSourceID="SqlDataSource_CompanyEdit" CssClass="dropdown"
-                            DataTextField="CompanyName" DataValueField="CompanyID" SelectedValue='<%# Bind("CompanyID")%>'>
-                        </asp:DropDownList>
+                            DataTextField="CompanyName" DataValueField="CompanyID" SelectedValue='<%# Bind("CompanyID")%>'></asp:DropDownList>
+                            <br />
+                            <asp:Label ID="lbl_CompanyAddressEdit" runat="server" Text='<%# Bind("CompanyAddress")%>' ></asp:Label>
+                            <br />
+                            <asp:Label ID="lbl_CompanyCityEdit" runat="server" Text='<%# Bind("CompanyCity")%>' ></asp:Label>, 
+                            <asp:Label ID="lbl_StateEdit" runat="server" Text='<%# Bind("State")%>' ></asp:Label>
+                            &nbsp<asp:Label ID="lbl_CompanyZipEdit" runat="server" Text='<%# Bind("CompanyZip")%>' ></asp:Label>
                     </td>
                 </tr>
 
@@ -174,7 +175,8 @@
 
                 <tr>
                     <th>Description:  </th>
-                    <td><asp:TextBox ID="tb_JobDescription" runat="server" rows="5" Width="400px" CssClass="textbox" TextMode="MultiLine" Wrap="true" Text ='<%# Bind("JobDescription") %>' /></td>
+                    <td><asp:TextBox ID="tb_JobDescription" runat="server" rows="5" Width="400px" CssClass="textbox" TextMode="MultiLine" DataValueField="JobDescription"
+                        Wrap="true"  Text ='<%# Bind("JobDescription") %>' /></td>
                 </tr>
                 <tr>
                     <th>Major:  </th>
@@ -188,9 +190,10 @@
                 <tr>
                     <th>Internship:  </th>
                     <td>
-                        <asp:RadioButtonList ID="rbl_EditInternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" DataValueField="Internship">
-                            <asp:ListItem>Yes</asp:ListItem>
-                            <asp:ListItem Selected="True">No</asp:ListItem>
+                        <asp:RadioButtonList ID="rbl_EditInternYesNo" runat="server" DataSourceID="SqlDataSource_rblInternship" RepeatDirection="Horizontal" 
+                            SelectedValue='<%# Bind("Internship")%>' RepeatLayout="Flow" DataValueField="Internship" DataTextField="Internship">
+                            <asp:listitem id="Yes" runat="server" value="Yes" />
+                            <asp:listitem id="No" runat="server" value="No" />
                         </asp:RadioButtonList>
                     </td>
                 </tr>
@@ -198,16 +201,17 @@
                 <tr>
                     <th>Paid:  </th>
                     <td>
-                        <asp:RadioButtonList ID="rbl_EditPaidInternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" DataValueField="PaidIntern" >
-                            <asp:ListItem>Yes</asp:ListItem>
-                            <asp:ListItem Selected="True">No</asp:ListItem>
+                        <asp:RadioButtonList ID="rbl_EditPaidInternYesNo" runat="server" DataSourceID="SqlDataSource_rblPaidIntern" RepeatDirection="Horizontal" 
+                            RepeatLayout="Flow" SelectedValue='<%# Bind("PaidIntern")%>' DataValueField="PaidIntern" DataTextField="PaidIntern" >
+                            <asp:listitem id="Listitem1" runat="server" value="Yes" />
+                            <asp:listitem id="Listitem2" runat="server" value="No" />
                         </asp:RadioButtonList>
                     </td>
                 </tr>
                 <tr>
                     <th>Semester:  </td>
                     <td><asp:DropDownList ID="ddl_AcademicTerm" runat="server" DataSourceID="SqlDataSource_EditAcademicTerm" CssClass="dropdown"
-                            DataTextField="SHORT_DESCR" DataValueField="TermID" SelectedValue='<%# Bind("TermID")%>'>
+                            DataTextField="SHORT_DESCR" DataValueField="TermID" SelectedValue='<%# Bind("TermID")%>' >
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -243,8 +247,8 @@
                         <br />
                         <asp:Label ID="lbl_CompanyAddress" runat="server" Text='<%# Bind("CompanyAddress")%>' />
                         <br />
-                        <asp:Label ID="lbl_CompanyCity" runat="server" Text='<%# Bind("CompanyCity")%>' />
-                        <br />
+                        <asp:Label ID="lbl_CompanyCity" runat="server" Text='<%# Bind("CompanyCity")%>' />, 
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("State")%>' />&nbsp
                         <asp:Label ID="lbl_CompanyZip" runat="server" Text='<%# Bind("CompanyZip")%>' />
                     </td>
                 </tr>

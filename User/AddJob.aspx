@@ -6,21 +6,7 @@
 
         <asp:SqlDataSource ID="SqlDataSource_AddJob" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
             
-            InsertCommand="INSERT INTO [AddJob] 
-                           ([CompanyID], 
-                            [JobTitleID], 
-                            [ProgramID], 
-                            [TermID], 
-                            [JobTypeID], 
-                            [JobDescription], 
-                            [JobSkill1], 
-                            [JobSkill2], 
-                            [JobSkill3], 
-                            [Internship], 
-                            [PaidIntern]) 
-                            VALUES (@CompanyID, @JobTitleID, @ProgramID, @TermID, @JobTypeID, @JobDescription, @JobSkill1, @JobSkill2, @JobSkill3, @Internship, @PaidIntern)" 
-            
-            SelectCommand="SELECT [JobID], [CompanyID], [JobTitleID], [ProgramID], [TermID], [JobTypeID], [JobDescription], [JobSkill1], [JobSkill2], [JobSkill3], [Internship], [PaidIntern] FROM [AddJob]"> 
+            InsertCommand="INSERT INTO AddJob (CompanyID, JobTitleID, ProgramID, TermID, JobTypeID, JobDescription, JobSkill1, JobSkill2, JobSkill3, Internship, PaidIntern) VALUES (@CompanyID, @JobTitleID, @ProgramID, @TermID, @JobTypeID, @JobDescription, @JobSkill1, @JobSkill2, @JobSkill3, @Internship, @PaidIntern)"> 
                         
             <DeleteParameters>
 
@@ -36,8 +22,8 @@
                 <asp:Parameter Name="JobSkill1" Type="Int32" />
                 <asp:Parameter Name="JobSkill2" Type="Int32" />
                 <asp:Parameter Name="JobSkill3" Type="Int32" />
-                <asp:Parameter Name="Internship" Type="Int32" />
-                <asp:Parameter Name="PaidIntern" Type="Int32" />
+                <asp:Parameter Name="Internship" Type="String" />
+                <asp:Parameter Name="PaidIntern" Type="String" />
             </InsertParameters>
            
              <UpdateParameters>
@@ -82,54 +68,57 @@
 
                 <tr>
                     <th><asp:Label ID="lbl_CompanyDropDown" runat="server" Text="Company:   " Font-Bold="True"></asp:Label></th>
-                    <td><asp:DropDownList ID="ddl_Company" runat="server" DataSourceID="SqlDataSource_Company" DataTextField="CompanyName" 
-                        DataValueField="CompanyID" CssClass="dropdown" ></asp:DropDownList></td>                
+                    <td><asp:DropDownList ID="ddl_Company" runat="server" DataSourceID="SqlDataSource_Company" SelectedValue='<%# Bind("CompanyID")%>' 
+                        DataTextField="CompanyName" DataValueField="CompanyID" CssClass="dropdown" ></asp:DropDownList></td>                
                 </tr>
 
                 <tr>
                     <th><asp:Label ID="lbl_JobTitle" runat="server" Text="Title:   " Font-Bold="True"></asp:Label></th>
-                    <td><asp:DropDownList ID="ddl_JobTitle" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobTitle" 
-                        DataTextField="JobTitle" DataValueField="JobTitleID" ></asp:DropDownList></td>
+                    <td><asp:DropDownList ID="ddl_JobTitle" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobTitle"  
+                        DataTextField="JobTitle" DataValueField="JobTitleID" SelectedValue='<%# Bind("JobTitleID")%>' ></asp:DropDownList></td>
                 </tr>
                 
                 <tr>
                     <th><asp:Label ID="lbl_JobType" runat="server" Text="Job Type:   " Font-Bold="True"></asp:Label></th>
                     <td><asp:RadioButtonList ID="rbl_JobType" runat="server" DataSourceID="SqlDataSource_JobType" DataTextField="JobType" 
-                        DataValueField="JobTypeID" RepeatLayout="Flow" RepeatDirection="Horizontal"></asp:RadioButtonList></td>
+                        DataValueField="JobTypeID" RepeatLayout="Flow" RepeatDirection="Horizontal" SelectedValue='<%# Bind("JobTypeID")%>'>
+                    </asp:RadioButtonList></td>
                 </tr>
 
                 <tr>
                     <th><asp:Label ID="lbl_AddJobSkills" runat="server" Text="Skills:  "></asp:Label></th>
                     <td><asp:DropDownList ID="ddl_JobSkill1" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" 
-                        DataTextField="JobSkillDescription" DataValueField="JobSkill1" ></asp:DropDownList></td>                
+                        DataTextField="JobSkillDescription" DataValueField="JobSkill1" SelectedValue='<%# Bind("JobSkill1")%>' ></asp:DropDownList></td>                
                 </tr>
 
                 <tr>
                     <th></th>
                     <td><asp:DropDownList ID="ddl_JobSkill2" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" 
-                        DataTextField="JobSkillDescription" DataValueField="JobSkill2" ></asp:DropDownList></td>
+                        DataTextField="JobSkillDescription" DataValueField="JobSkill2" SelectedValue='<%# Bind("JobSkill2")%>' ></asp:DropDownList></td>
                 </tr>
 
                 <tr>
                     <th></th>
                     <td><asp:DropDownList ID="ddl_JobSkill3" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" 
-                        DataTextField="JobSkillDescription" DataValueField="JobSkill3" ></asp:DropDownList></td>
+                        DataTextField="JobSkillDescription" DataValueField="JobSkill3" SelectedValue='<%# Bind("JobSkill3")%>' ></asp:DropDownList></td>
                 </tr>
 
                 <tr>
                     <th><asp:Label ID="lbl_JobDescription" runat="server" Text="Job Description:    " Style="vertical-align: top;" Font-Bold="True"></asp:Label></th>
-                    <td><asp:TextBox ID="tb_JobDescription" runat="server" CssClass="dropdown" Height="125px" Width="350px" TextMode="MultiLine" ></asp:TextBox></td>
+                    <td><asp:TextBox ID="tb_JobDescription" runat="server" CssClass="dropdown" Height="125px" Width="350px" TextMode="MultiLine" 
+                        DataValueField="JobDescription" Text ='<%# Bind("JobDescription") %>' ></asp:TextBox></td>
                 </tr>
 
                 <tr>
                     <th><asp:Label ID="lbl_Major" runat="server" Text="Major:   " Font-Bold="True"></asp:Label></th>
                     <td><asp:DropDownList ID="ddl_Major" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_Major" DataTextField="ProgramDesc" 
-                        DataValueField="ProgramID"></asp:DropDownList></td>
+                        DataValueField="ProgramID" SelectedValue='<%# Bind("ProgramID")%>' ></asp:DropDownList></td>
                 </tr>
 
                 <tr>
                     <th><asp:Label ID="lbl_InternYesNo" runat="server" Text="Internship?  " Font-Bold="True"></asp:Label></th>          
-                    <td><asp:RadioButtonList ID="rbl_InternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <td><asp:RadioButtonList ID="rbl_InternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" 
+                        DataValueField="Internship" SelectedValue='<%# Bind("Internship")%>' >
                         <asp:ListItem>Yes</asp:ListItem>
                         <asp:ListItem>No</asp:ListItem>
                     </asp:RadioButtonList></td>
@@ -137,7 +126,8 @@
 
                 <tr>
                     <th><asp:Label ID="lbl_PaidInternYesNo" runat="server" Text="Paid?  " Font-Bold="True"></asp:Label></th>
-                    <td><asp:RadioButtonList ID="rbl_PaidInternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                    <td><asp:RadioButtonList ID="rbl_PaidInternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" 
+                        DataValueField="PaidIntern" SelectedValue='<%# Bind("PaidIntern")%>' >
                         <asp:ListItem>Yes</asp:ListItem>
                         <asp:ListItem>No</asp:ListItem>
                     </asp:RadioButtonList></td>
@@ -146,7 +136,7 @@
                 <tr>
                     <th><asp:Label ID="lbl_AcademicTerm" runat="server" Text="Semester:   " Font-Bold="True"></asp:Label></th>
                     <td><asp:DropDownList ID="ddl_AcademicTerm" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_AcademicTerm" 
-                        DataTextField="SHORT_DESCR" DataValueField="TermID"></asp:DropDownList></td>
+                        DataTextField="SHORT_DESCR" DataValueField="TermID" SelectedValue='<%# Bind("TermID")%>' ></asp:DropDownList></td>
                  </tr>
 
                 <tr>

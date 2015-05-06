@@ -83,7 +83,7 @@
     <iframe src="https://www.google.com/maps/d/embed?mid=zmsRBQI0f6Io.kwRFYCutOcbE" width="640" height="480"></iframe>
 
     <asp:SqlDataSource ID="SqlDataSource_ViewMyJobs" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
-        SelectCommand="SELECT AddJob.JobID, Company.CompanyName, JobTitle.JobTitle, JobType.JobType, AddJob.Internship FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID">
+        SelectCommand="SELECT AddJob.JobID, Company.CompanyName, JobTitle.JobTitle, JobType.JobType, AddJob.Internship FROM AddJob LEFT OUTER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID LEFT OUTER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID LEFT OUTER JOIN Company ON AddJob.CompanyID = Company.CompanyID">
     </asp:SqlDataSource>
 </asp:Content>
 
