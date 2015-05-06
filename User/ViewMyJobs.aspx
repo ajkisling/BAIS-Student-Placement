@@ -40,17 +40,29 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="JobID" DataSourceID="SqlDataSource_ViewMyJobs">
+    <div class="rnd1">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="JobID" DataSourceID="SqlDataSource_ViewMyJobs" 
+        BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" CellSpacing="2" ForeColor="Black" CssClass="gv1" >
         <Columns>
-            <asp:BoundField DataField="JobID" HeaderText="Job ID" InsertVisible="False" ReadOnly="True" SortExpression="JobID" />
+            <asp:BoundField DataField="JobID" HeaderText="Job ID" InsertVisible="False" ReadOnly="True" SortExpression="JobID" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="CompanyName" HeaderText="Company Name" SortExpression="CompanyName" />
             <asp:BoundField DataField="JobTitle" HeaderText="Job Title" SortExpression="JobTitle" />
-            <asp:BoundField DataField="Internship" HeaderText="Internship" SortExpression="Internship" />
+            <asp:BoundField DataField="Internship" HeaderText="Internship?" SortExpression="Internship" ItemStyle-HorizontalAlign="Center" />
             <asp:HyperLinkField DataNavigateUrlFields="JobID" DataNavigateUrlFormatString="JobDetails.aspx?JobID={0}" Text="Select" />
         </Columns>
+        <FooterStyle BackColor="#CCCCCC" />
+        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left" />
+        <RowStyle BackColor="White" />
+        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+        <SortedAscendingHeaderStyle BackColor="#808080" />
+        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+        <SortedDescendingHeaderStyle BackColor="#383838" />
     </asp:GridView>
-     <h2>Iowa City, Iowa</h2>
-   
+   </div>
+     
+   <h2>Iowa City, Iowa</h2>
    <div id="my_map" style="width:50em;height:20em"></div>
    
    <p>

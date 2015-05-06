@@ -156,3 +156,96 @@ h4 {
     font-family:'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     font-size:11pt;
 }
+
+ .rnd1 {
+   background-color: #FFCC33;
+   border:0px none;
+   padding:2px 2px 2px 2px;
+   border-radius: 5px;
+   width: 74%;
+ }
+
+.gv1 {
+   width: 99.5%;
+   height: 98%;
+   text-align:center;
+   margin:2px 2px 2px 4px;
+   border: 0px none;
+   border-collapse: collapse;
+ }
+
+
+ .rnd2 {
+   background-color: #FFCC33;
+   border:0px none;
+   padding:2px 2px 2px 2px;
+   border-radius: 5px;
+   width: 100%;
+ } 
+
+#details {
+    width: 75%;
+    background-color: #FFCC33;
+   border:0px none;
+   padding:2px 2px 2px 2px;
+   border-radius: 5px;
+}
+
+#details td {
+    font-size: 1em;
+    color: black;
+    border: 1px solid #98bf21;
+    background-color: white;
+    padding: 3px 7px 2px 7px;
+    vertical-align:top;
+}
+
+#details th {
+    vertical-align:top;
+    text-align:right;
+    padding-top:4px;
+}
+
+.button {
+	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	color:white;
+	background-color:black;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border:none;
+	font-family:'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;  
+	font-size:16px;
+	height:32px;
+	padding:4px 16px;
+	text-shadow:#FE6 0 1px 0
+}
+
+.textbox {
+    font-family:'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;  
+}
+
+#jobEdit {
+    width: 75%;
+    background-color: #FFCC33;
+   border:0px none;
+   padding:2px 2px 2px 2px;
+   border-radius: 5px;
+}
+
+#jobEdit td {
+    font-size: 1em;
+    color: black;
+    border: 1px solid #98bf21;
+    background-color: white;
+    padding: 3px 7px 2px 7px;
+    vertical-align:top;
+}
+
+#jobEdit th {
+    vertical-align:top;
+    text-align:right;
+    padding-top:4px;
+}
