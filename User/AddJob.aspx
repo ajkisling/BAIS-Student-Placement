@@ -78,58 +78,83 @@
 
             <InsertItemTemplate>
 
-                <asp:Label ID="lbl_CompanyDropDown" runat="server" Text="Company:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_Company" runat="server" DataSourceID="SqlDataSource_Company" DataTextField="CompanyName" DataValueField="CompanyID" CssClass="dropdown" >
-                </asp:DropDownList>
-                    <br />
-                <asp:Label ID="lbl_JobTitle" runat="server" Text="Title:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_JobTitle" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobTitle" DataTextField="JobTitle" DataValueField="JobTitleID" >
-                </asp:DropDownList>
-                    <br />
-                <asp:Label ID="lbl_JobType" runat="server" Text="Job Type:   " Font-Bold="True"></asp:Label>
-                <asp:RadioButtonList ID="rbl_JobType" runat="server" DataSourceID="SqlDataSource_JobType" DataTextField="JobType" DataValueField="JobTypeID" RepeatLayout="Flow" RepeatDirection="Horizontal">
-                </asp:RadioButtonList>
-                    <br />
-                <asp:Label ID="lbl_AddJobSkills" runat="server" Text="Add Job Skills:  " Font-Bold="True"></asp:Label>
-                <asp:Label ID="lbl_JobSkill1" runat="server" Text="1:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_JobSkill1" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkill1" >
-                </asp:DropDownList>
-                    <br />
-                <asp:Label ID="lbl_JobSkill2" runat="server" Text="2:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_JobSkill2" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkill2" >
-                </asp:DropDownList>
-                    <br />
-                <asp:Label ID="lbl_JobSkill3" runat="server" Text="3:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_JobSkill3" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" DataTextField="JobSkillDescription" DataValueField="JobSkill3" >
-                </asp:DropDownList>
-                    <br />
-                <asp:Label ID="lbl_JobDescription" runat="server" Text="Job Description:    " Style="vertical-align: top;" Font-Bold="True"></asp:Label>
-                <asp:TextBox ID="tb_JobDescription" runat="server" CssClass="dropdown" Height="125px" Width="350px" TextMode="MultiLine" ></asp:TextBox>
-                    <br />
-                <asp:Label ID="lbl_Major" runat="server" Text="Major:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_Major" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_Major" DataTextField="ProgramDesc" DataValueField="ProgramID">
-                </asp:DropDownList>
-                    <br />
-                <asp:Label ID="lbl_InternYesNo" runat="server" Text="Internship?  " Font-Bold="True"></asp:Label>            
-                <asp:RadioButtonList ID="rbl_InternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
-                    <asp:ListItem>Yes</asp:ListItem>
-                    <asp:ListItem>No</asp:ListItem>
-                </asp:RadioButtonList>
-                    <br />
-                <asp:Label ID="lbl_PaidInternYesNo" runat="server" Text="Paid?  " Font-Bold="True"></asp:Label>
-                <asp:RadioButtonList ID="rbl_PaidInternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
-                    <asp:ListItem>Yes</asp:ListItem>
-                    <asp:ListItem>No</asp:ListItem>
-                </asp:RadioButtonList>
-                    <br />
-                <asp:Label ID="lbl_AcademicTerm" runat="server" Text="Semester Employed:   " Font-Bold="True"></asp:Label>
-                <asp:DropDownList ID="ddl_AcademicTerm" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_AcademicTerm" DataTextField="SHORT_DESCR" DataValueField="TermID">
-                </asp:DropDownList>
-                    <br />  
-                    <br /> 
-                <asp:Button ID="btn_InsertJob" runat="server" CausesValidation="true" CommandName="Insert" Text="Add Job" />
+            <table id="jobAdd">
 
-                <asp:Button ID="btn_CancelJobAdd" runat="server" CausesValidation="true" CommandName="Cancel" Text="Cancel" />
+                <tr>
+                    <th><asp:Label ID="lbl_CompanyDropDown" runat="server" Text="Company:   " Font-Bold="True"></asp:Label></th>
+                    <td><asp:DropDownList ID="ddl_Company" runat="server" DataSourceID="SqlDataSource_Company" DataTextField="CompanyName" 
+                        DataValueField="CompanyID" CssClass="dropdown" ></asp:DropDownList></td>                
+                </tr>
+
+                <tr>
+                    <th><asp:Label ID="lbl_JobTitle" runat="server" Text="Title:   " Font-Bold="True"></asp:Label></th>
+                    <td><asp:DropDownList ID="ddl_JobTitle" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobTitle" 
+                        DataTextField="JobTitle" DataValueField="JobTitleID" ></asp:DropDownList></td>
+                </tr>
+                
+                <tr>
+                    <th><asp:Label ID="lbl_JobType" runat="server" Text="Job Type:   " Font-Bold="True"></asp:Label></th>
+                    <td><asp:RadioButtonList ID="rbl_JobType" runat="server" DataSourceID="SqlDataSource_JobType" DataTextField="JobType" 
+                        DataValueField="JobTypeID" RepeatLayout="Flow" RepeatDirection="Horizontal"></asp:RadioButtonList></td>
+                </tr>
+
+                <tr>
+                    <th><asp:Label ID="lbl_AddJobSkills" runat="server" Text="Skills:  "></asp:Label></th>
+                    <td><asp:DropDownList ID="ddl_JobSkill1" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" 
+                        DataTextField="JobSkillDescription" DataValueField="JobSkill1" ></asp:DropDownList></td>                
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <td><asp:DropDownList ID="ddl_JobSkill2" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" 
+                        DataTextField="JobSkillDescription" DataValueField="JobSkill2" ></asp:DropDownList></td>
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <td><asp:DropDownList ID="ddl_JobSkill3" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobSkills" 
+                        DataTextField="JobSkillDescription" DataValueField="JobSkill3" ></asp:DropDownList></td>
+                </tr>
+
+                <tr>
+                    <th><asp:Label ID="lbl_JobDescription" runat="server" Text="Job Description:    " Style="vertical-align: top;" Font-Bold="True"></asp:Label></th>
+                    <td><asp:TextBox ID="tb_JobDescription" runat="server" CssClass="dropdown" Height="125px" Width="350px" TextMode="MultiLine" ></asp:TextBox></td>
+                </tr>
+
+                <tr>
+                    <th><asp:Label ID="lbl_Major" runat="server" Text="Major:   " Font-Bold="True"></asp:Label></th>
+                    <td><asp:DropDownList ID="ddl_Major" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_Major" DataTextField="ProgramDesc" 
+                        DataValueField="ProgramID"></asp:DropDownList></td>
+                </tr>
+
+                <tr>
+                    <th><asp:Label ID="lbl_InternYesNo" runat="server" Text="Internship?  " Font-Bold="True"></asp:Label></th>          
+                    <td><asp:RadioButtonList ID="rbl_InternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                        <asp:ListItem>Yes</asp:ListItem>
+                        <asp:ListItem>No</asp:ListItem>
+                    </asp:RadioButtonList></td>
+                </tr>
+
+                <tr>
+                    <th><asp:Label ID="lbl_PaidInternYesNo" runat="server" Text="Paid?  " Font-Bold="True"></asp:Label></th>
+                    <td><asp:RadioButtonList ID="rbl_PaidInternYesNo" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
+                        <asp:ListItem>Yes</asp:ListItem>
+                        <asp:ListItem>No</asp:ListItem>
+                    </asp:RadioButtonList></td>
+                </tr>
+
+                <tr>
+                    <th><asp:Label ID="lbl_AcademicTerm" runat="server" Text="Semester:   " Font-Bold="True"></asp:Label></th>
+                    <td><asp:DropDownList ID="ddl_AcademicTerm" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_AcademicTerm" 
+                        DataTextField="SHORT_DESCR" DataValueField="TermID"></asp:DropDownList></td>
+                 </tr>
+
+                <tr>
+                    <th colspan="2"><asp:Button ID="btn_InsertJob" runat="server" CausesValidation="true" CommandName="Insert" Text="Add Job" CssClass="button" />
+                    <asp:Button ID="btn_CancelJobAdd" runat="server" CausesValidation="true" CommandName="Cancel" Text="Cancel" CssClass="button"  /></th>
+                </tr>
+
+            </table>
 
             </InsertItemTemplate>
 

@@ -146,7 +146,7 @@
                 </tr>
 
                 <tr>
-                    <th>Skill 1:  </th>
+                    <th>Skills:  </th>
                     <td>
                         <asp:DropDownList ID="ddl_EditJobSkill1" runat="server" DataSourceID="SqlDataSource_EditJobSkills" CssClass="dropdown"
                             DataValueField="JobSkill1" DataTextField="JobSkillDescription" SelectedValue='<%# Bind("JobSkill1")%>'>
@@ -155,7 +155,7 @@
                 </tr>
 
                 <tr>
-                    <th>Skill 2:  </th>
+                    <th></th>
                     <td>
                         <asp:DropDownList ID="ddl_EditJobSkill2" runat="server" DataSourceID="SqlDataSource_EditJobSkills" CssClass="dropdown"
                              DataValueField="JobSkill2" DataTextField="JobSkillDescription" SelectedValue='<%# Bind("JobSkill2")%>'>
@@ -164,7 +164,7 @@
                 </tr>
 
                 <tr>
-                    <th>Skill 3:  </th>
+                    <th></th>
                     <td>
                         <asp:DropDownList ID="ddl_EditJobSkill3" runat="server" DataSourceID="SqlDataSource_EditJobSkills" CssClass="dropdown"
                              DataValueField="JobSkill3" DataTextField="JobSkillDescription" SelectedValue='<%# Bind("JobSkill3")%>'>

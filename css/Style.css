@@ -249,3 +249,26 @@ h4 {
     text-align:right;
     padding-top:4px;
 }
+
+#jobAdd {
+    width: 75%;
+    background-color: #FFCC33;
+   border:0px none;
+   padding:2px 2px 2px 2px;
+   border-radius: 5px;
+}
+
+#jobAdd td {
+    font-size: 1em;
+    color: black;
+    border: 1px solid #98bf21;
+    background-color: white;
+    padding: 3px 7px 2px 7px;
+    vertical-align:top;
+}
+
+#jobAdd th {
+    vertical-align:top;
+    text-align:right;
+    padding-top:4px;
+}
