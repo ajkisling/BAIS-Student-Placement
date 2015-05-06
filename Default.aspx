@@ -46,7 +46,10 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
     </table> 
     &nbsp;<br />
      <br />
-     <asp:SqlDataSource ID="sql_combo" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, State.StateName, JobTitle.JobTitle, JobType.JobType, JobSkills.JobSkillDescription, Company.CompanyAddress, Company.CompanyCity FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID INNER JOIN State ON Company.StateID = State.StateID"></asp:SqlDataSource>
+     <asp:SqlDataSource ID="sql_combo" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" 
+         SelectCommand="SELECT Company.CompanyName, State.StateName, JobTitle.JobTitle, JobType.JobType, JobSkills.JobSkillDescription, Company.CompanyAddress, Company.CompanyCity 
+         FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID INNER JOIN State ON Company.State = State.State">
+     </asp:SqlDataSource>
      <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="True" DataSourceID="sql_combo" AllowPaging="True" AllowSorting="True">
          <Columns>
              <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName" />

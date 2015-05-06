@@ -251,7 +251,7 @@ h4 {
 }
 
 #jobAdd {
-    width: 75%;
+    width: 100%;
     background-color: #FFCC33;
    border:0px none;
    padding:2px 2px 2px 2px;
@@ -271,4 +271,49 @@ h4 {
     vertical-align:top;
     text-align:right;
     padding-top:4px;
+}
+
+#AddCompany {
+    border-style: none;
+    border-color: inherit;
+    border-width: 0px;
+    width: 100%;
+    background-color: #FFCC33;
+    padding:2px 2px 2px 2px;
+    border-radius: 5px;
+}
+
+#AddCompany td {
+    font-size: 1em;
+    color: black;
+    border: 1px solid #98bf21;
+    background-color: white;
+    padding: 3px 7px 2px 7px;
+    vertical-align:top;
+    width: 100%;
+}
+
+#AddCompany th {
+    vertical-align:top;
+    text-align:right;
+    padding-top:4px;
+}
+
+.linkbutton {
+	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	color:white;
+	background-color:black;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border:none;
+	font-family:'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;  
+	font-size:16px;
+	height:32px;
+	padding:4px 16px;
+	text-shadow:#FE6 0 1px 0;
+    font-weight:200;
+    
 }

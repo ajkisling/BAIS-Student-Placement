@@ -37,7 +37,7 @@
         </asp:SqlDataSource>
         
         <asp:SqlDataSource ID="SqlDataSource_Company" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" 
-            SelectCommand="SELECT [CompanyID], [CompanyName], [CompanyAddress], [CompanyCity], [CompanyZip], [StateID] FROM [Company]">
+            SelectCommand="SELECT [CompanyID], [CompanyName], [CompanyAddress], [CompanyCity], [CompanyZip], [State] FROM [Company]">
         </asp:SqlDataSource>
 
         <asp:SqlDataSource ID="SqlDataSource_AcademicTerm" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
@@ -56,7 +56,7 @@
             SelectCommand="SELECT [JobTitleID], [JobTitle] FROM [JobTitle]">
         </asp:SqlDataSource>
 
-        <asp:FormView ID="FormView1" runat="server" DataKeyNames="JobID" DataSourceID="SqlDataSource_AddJob" DefaultMode="Insert">
+        <asp:FormView ID="FormView1" runat="server" DataKeyNames="JobID" DataSourceID="SqlDataSource_AddJob" DefaultMode="Insert" Width="876px">
 
             <EditItemTemplate>
 
@@ -69,7 +69,8 @@
                 <tr>
                     <th><asp:Label ID="lbl_CompanyDropDown" runat="server" Text="Company:   " Font-Bold="True"></asp:Label></th>
                     <td><asp:DropDownList ID="ddl_Company" runat="server" DataSourceID="SqlDataSource_Company" SelectedValue='<%# Bind("CompanyID")%>' 
-                        DataTextField="CompanyName" DataValueField="CompanyID" CssClass="dropdown" ></asp:DropDownList></td>                
+                        DataTextField="CompanyName" DataValueField="CompanyID" CssClass="dropdown" ></asp:DropDownList></td>   
+                    <th><asp:HyperLink ID="hplk_AddCompany" runat="server" NavigateUrl="~/User/AddCompany.aspx" CssClass="linkbutton" Font-Underline="false" >Add a New Company</asp:HyperLink></th>             
                 </tr>
 
                 <tr>
