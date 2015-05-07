@@ -20,4 +20,8 @@ Partial Class _Default
 
         gv_JobTitle.Visible = "true"
     End Sub
+
+    Protected Sub btn_view_Click(sender As Object, e As EventArgs) Handles btn_view.Click
+        Response.Redirect("./User/ViewMyJobs.aspx")
+    End Sub
 End Class
