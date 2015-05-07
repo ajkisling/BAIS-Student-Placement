@@ -41,7 +41,7 @@
                             <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home" Value="Home"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/User/ViewMyJobs.aspx" Text="View My Jobs" Value="View My Jobs"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/User/AddJob.aspx" Text="Add Job" Value="Add Job"></asp:MenuItem>                            
-                            <asp:MenuItem NavigateUrl="~/JobPostings.aspx" Text="Job Postings" Value="Add Internship"></asp:MenuItem>
+                            <%--<asp:MenuItem NavigateUrl="~/JobPostings.aspx" Text="Job Postings" Value="Add Internship"></asp:MenuItem>--%>
                             <asp:MenuItem NavigateUrl="~/About.aspx" Text="About Us" Value="About Us"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/FindAJob.aspx" Text="Job's Map" Value="Job's Map"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Admin/default.aspx" Text="Admin" Value="Admin"></asp:MenuItem>
