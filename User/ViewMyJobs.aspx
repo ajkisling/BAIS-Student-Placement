@@ -131,12 +131,13 @@
         <SortedDescendingCellStyle BackColor="#CAC9C9" />
         <SortedDescendingHeaderStyle BackColor="#383838" />
     </asp:GridView>
+   &nbsp;&nbsp;&nbsp;
    </div>
        <br />   
        <br />
   
             <div id="googleMap" style="width:60%;height:30em; border-radius:5px;"></div>
-  <%--  <div id="googleMap" style="width:500px;height:380px; border-radius:5px;"></div>--%>
+    <%--  <div id="googleMap" style="width:500px;height:380px; border-radius:5px;"></div>--%>
    
     <br /> 
        <br />

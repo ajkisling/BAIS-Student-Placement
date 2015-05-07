@@ -4,8 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-
-    <asp:FormView ID="FormView1" runat="server" AllowPaging="True" DataKeyNames="CompanyID" DataSourceID="SqlDataSource1">
+    <div class="rnd1">
+    <asp:FormView ID="FormView1" runat="server" AllowPaging="True" DataKeyNames="CompanyID" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333">
         <EditItemTemplate>
             CompanyName:
             <asp:TextBox ID="CompanyNameTextBox" runat="server" Text='<%# Bind("CompanyName") %>' />
@@ -37,6 +37,9 @@
             <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
             &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </EditItemTemplate>
+        <EditRowStyle BackColor="#7C6F57" />
+        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
         <InsertItemTemplate>
             CompanyName:
             <asp:TextBox ID="CompanyNameTextBox" runat="server" Text='<%# Bind("CompanyName") %>' />
@@ -95,11 +98,14 @@
             <asp:Label ID="CompanyIDLabel" runat="server" Text='<%# Eval("CompanyID") %>' />
             <br />
         </ItemTemplate>
+        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#E3EAEB" />
     </asp:FormView>
     <br />
-    <asp:Button ID="Button1" runat="server" Text="Return" />
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, Company.State, JobTitle.JobTitle, JobType.JobType, JobSkills.JobSkillDescription, Company.CompanyAddress, Company.CompanyCity, Company.CompanyZip, Company.CompanyID FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID AND AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID"></asp:SqlDataSource>
+    <asp:Button Class="button" ID="Button1" runat="server" Text="Return" />
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, Company.State, JobTitle.JobTitle, JobType.JobType, JobSkills.JobSkillDescription, Company.CompanyAddress, Company.CompanyCity, Company.CompanyZip, Company.CompanyID FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID AND AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID
+WHERE  Company.CompanyID = AddJob.CompanyID;"></asp:SqlDataSource>
 
-
+    </div>
 </asp:Content>
 
