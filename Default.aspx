@@ -32,7 +32,7 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
      
     <table>
         <tr> 
-            <td><asp:GridView ID="gv_CompName" runat="server" Visible="false" AutoGenerateColumns="False" DataKeyNames="CompanyID" DataSourceID="sql_CompName">
+            <td><asp:GridView ID="gv_CompName" runat="server" Visible="False" AutoGenerateColumns="False" DataKeyNames="CompanyID" DataSourceID="sql_CompName">
              <Columns>
              <asp:BoundField DataField="CompanyID" HeaderText="CompanyID" InsertVisible="False" ReadOnly="True" SortExpression="CompanyID" />
              <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName" />
@@ -40,14 +40,14 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
              <asp:BoundField DataField="CompanyCity" HeaderText="CompanyCity" SortExpression="CompanyCity" />
              <asp:BoundField DataField="CompanyZip" HeaderText="CompanyZip" SortExpression="CompanyZip" />
              <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
-             <asp:HyperLinkField DataNavigateUrlFields="CompanyID" DataNavigateUrlFormatString="CompNameDetails.aspx?CompanyID=CompanyID" Text="View" />
+             <asp:HyperLinkField DataNavigateUrlFields="CompanyID" DataNavigateUrlFormatString="CompNameDetails.aspx?CompanyID={0}" Text="View" />
              </Columns>
              </asp:GridView></td>
-            <td><asp:GridView ID="gv_JobTitle" runat="server" Visible="false" AutoGenerateColumns="False" DataKeyNames="JobTitleID" DataSourceID="sql_JobTitle">
+            <td><asp:GridView ID="gv_JobTitle" runat="server" Visible="False" AutoGenerateColumns="False" DataKeyNames="JobTitleID" DataSourceID="sql_JobTitle">
          <Columns>
              <asp:BoundField DataField="JobTitleID" HeaderText="JobTitleID" InsertVisible="False" ReadOnly="True" SortExpression="JobTitleID" />
              <asp:BoundField DataField="JobTitle" HeaderText="JobTitle" SortExpression="JobTitle" />
-             <asp:HyperLinkField DataNavigateUrlFields="JobTitleID" DataNavigateUrlFormatString="JobTitleDetails.aspx?JobTitleID=JobTitleID" Text="View" />
+             <asp:HyperLinkField DataNavigateUrlFields="JobTitleID" DataNavigateUrlFormatString="JobTitleDetails.aspx?JobTitleID={0}" Text="View" />
              </Columns>
              </asp:GridView></td>
         </tr>
