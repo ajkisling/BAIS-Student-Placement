@@ -13,52 +13,45 @@ Donec rhoncus, sem semper facilisis aliquet, erat massa interdum urna, vehicula 
 
 Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravida nec nulla ut, pharetra dictum ex. Curabitur at erat volutpat, facilisis ex id, mollis sapien. In felis lacus, pulvinar at facilisis a, aliquet a odio. Donec aliquam leo eleifend ex placerat, condimentum convallis purus gravida. Integer iaculis tempus lorem, non convallis diam condimentum in. Aliquam sed ligula nec sapien commodo sodales. Proin tristique quis ante eget interdum. Praesent eu luctus nisl, sit amet sagittis sapien.</p>
      
-    <asp:SqlDataSource ID="sql_JobType" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobType]"></asp:SqlDataSource>
-     <asp:SqlDataSource ID="sql_State" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [Company]"></asp:SqlDataSource>
+     <asp:SqlDataSource ID="sql_CompName" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [Company]"></asp:SqlDataSource>
+     <asp:SqlDataSource ID="sql_JobTitle" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobTitle]"></asp:SqlDataSource>
      <br />
-    <table>
-        
-       <tr>
-            <td><asp:Label ID="lbl_CompName" runat="server" Text="Company Name:"></asp:Label></td>
+     <table>
+         <tr>
+            <td><asp:Label ID="lbl_Name" runat="server" Text="Search by Company Name:"></asp:Label></td>
             <td><asp:TextBox ID="tb_compName" runat="server"></asp:TextBox></td>
             <td><asp:Button ID="btn_CompName" runat="server" Text="Search" /></td>
-        </tr>
-        <tr>
-            <td><asp:Label ID="lbl_JobTitle" runat="server" Text="Job Title:"></asp:Label></td>
-            <td><asp:TextBox ID="tb_jobTitle" runat="server"></asp:TextBox></td>
-            <td><asp:Button ID="btn_jobTitle" runat="server" Text="Search" /></td>
-        </tr>
-        <tr>
-            <td><asp:Label ID="lbl_JobType" runat="server" Text="Job Type"></asp:Label></td>
-            <td><asp:DropDownList ID="ddl_jobtype" runat="server" DataSourceID="sql_JobType" DataTextField="JobType" DataValueField="JobType">
-     </asp:DropDownList></td>
-            <td><asp:Button ID="btn_JobType" runat="server" Text="Search" /></td>
-        </tr>
-        <tr>
-            <td><asp:Label ID="lbl_state" runat="server" Text="State:"></asp:Label></td>
-            <td><asp:DropDownList ID="ddl_state" runat="server" DataSourceID="sql_State" DataTextField="State" DataValueField="State">
-     </asp:DropDownList></td>
-            <td><asp:Button ID="btn_state" runat="server" Text="Search" /></td>
-        </tr>
-        <tr>
-            <td><asp:Label ID="lbl_skills" runat="server" Text="Skills:"></asp:Label></td>
-            <td><asp:TextBox ID="tb_skills" runat="server"></asp:TextBox></td>
-            <td><asp:Button ID="btn_JobSkills" runat="server" Text="Search" /></td>
-        </tr>
-    </table> 
-    &nbsp;<br />
-     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-         <Columns>
+         </tr>
+         <tr>
+            <td><asp:Label ID="lbl_Title" runat="server" Text="Search by Job Title:"></asp:Label></td>
+            <td><asp:TextBox ID="tb_JobTitle" runat="server"></asp:TextBox></td>
+            <td><asp:Button ID="btn_JobTitle" runat="server" Text="Search" /></td>
+         </tr>
+    </table>
+     <br />
+     
+    <table>
+        <tr> 
+            <td><asp:GridView ID="gv_CompName" runat="server" Visible="false" AutoGenerateColumns="False" DataKeyNames="CompanyID" DataSourceID="sql_CompName">
+             <Columns>
+             <asp:BoundField DataField="CompanyID" HeaderText="CompanyID" InsertVisible="False" ReadOnly="True" SortExpression="CompanyID" />
              <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName" />
-             <asp:BoundField DataField="JobTitle" HeaderText="JobTitle" SortExpression="JobTitle" />
-             <asp:BoundField DataField="JobType" HeaderText="JobType" SortExpression="JobType" />
+             <asp:BoundField DataField="CompanyAddress" HeaderText="CompanyAddress" SortExpression="CompanyAddress" />
+             <asp:BoundField DataField="CompanyCity" HeaderText="CompanyCity" SortExpression="CompanyCity" />
+             <asp:BoundField DataField="CompanyZip" HeaderText="CompanyZip" SortExpression="CompanyZip" />
              <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
-             <asp:BoundField DataField="JobSkillDescription" HeaderText="JobSkillDescription" SortExpression="JobSkillDescription" />
-         </Columns>
-     </asp:GridView>
-     <br />
-     <asp:SqlDataSource ID="sql_search" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT JobSkills.JobSkillDescription, JobType.JobType, JobTitle.JobTitle, Company.CompanyName, Company.State FROM AddJob INNER JOIN Company ON AddJob.CompanyID = Company.CompanyID INNER JOIN JobSkills ON AddJob.JobSkill1 = JobSkills.JobSkill1 INNER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID INNER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID"></asp:SqlDataSource>
-     <br />
+             <asp:HyperLinkField DataNavigateUrlFields="CompanyID" DataNavigateUrlFormatString="CompNameDetails.aspx?CompanyID=CompanyID" Text="View" />
+             </Columns>
+             </asp:GridView></td>
+            <td><asp:GridView ID="gv_JobTitle" runat="server" Visible="false" AutoGenerateColumns="False" DataKeyNames="JobTitleID" DataSourceID="sql_JobTitle">
+         <Columns>
+             <asp:BoundField DataField="JobTitleID" HeaderText="JobTitleID" InsertVisible="False" ReadOnly="True" SortExpression="JobTitleID" />
+             <asp:BoundField DataField="JobTitle" HeaderText="JobTitle" SortExpression="JobTitle" />
+             <asp:HyperLinkField DataNavigateUrlFields="JobTitleID" DataNavigateUrlFormatString="JobTitleDetails.aspx?JobTitleID=JobTitleID" Text="View" />
+             </Columns>
+             </asp:GridView></td>
+        </tr>
+    </table>
      <br />
 
 
