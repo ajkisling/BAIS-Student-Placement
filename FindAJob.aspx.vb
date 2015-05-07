@@ -34,6 +34,6 @@ Partial Class FindAJob
     End Sub
 
     Protected Sub ShowResults(ByVal results As XElement)
-        Response.Redirect("ShowStoreLocations.aspx?Address=" & Server.UrlEncode(results.Element("result").Element("formatted_address").Value))
+        Response.Redirect("ShowJobLocations.aspx?Address=" & Server.UrlEncode(results.Element("result").Element("formatted_address").Value))
     End Sub
 End Class

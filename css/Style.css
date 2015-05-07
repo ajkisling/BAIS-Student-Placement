@@ -28,7 +28,7 @@
     margin:0 auto;
     background-color:white;
     height:20px;
-    width:45%;
+    width:80%;
     float:left;
 }
 
@@ -60,7 +60,7 @@
 
 #NavMenu li a {
     display:block;
-    padding:8px 15px !important;
+    padding:8px !important;
     text-decoration:none;
     font-weight:bold;
     color:black;
@@ -160,9 +160,10 @@ h4 {
  .rnd1 {
    background-color: #FFCC33;
    border:0px none;
-   padding:2px 2px 2px 2px;
+   padding:2px 4px 2px 2px;
    border-radius: 5px;
-   width: 74%;
+   width: 60%;
+
  }
 
 .gv1 {

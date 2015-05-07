@@ -3,83 +3,122 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
+    var IowaCity = new google.maps.LatLng(41.6611277, -91.5301683);
+
     function initialize() {
         var mapProp = {
-            center: new google.maps.LatLng(41.6611277, -91.5301683),
-            zoom: 5,
+            center: IowaCity,
+            zoom: 4,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
+
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-
-    var marker = new google.maps.Marker({
-        position: myCenter,
-    });
-
-    marker.setMap(map);
-</script>
-<%--    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-      
-    <script type="text/javascript">
         
-        var markers = new google.maps.Marker
+        var marker1 = new google.maps.Marker({
+            position: IowaCity,
+            map: map,
+            title: 'Iowa City'});
+        marker1.setMap(map);
+        google.maps.event.addListener(marker1, 'click', function () {
+            map.setZoom(12);
+            map.setCenter(marker1.getPosition());
+        });
+    
+        var Disney = new google.maps.LatLng(34.1562013, -118.3252152);
+        var marker2 = new google.maps.Marker({
+            position: Disney,
+            map: map,
+            title: 'Disney'
+        });
+        marker2.setMap(map);
+        google.maps.event.addListener(marker2, 'click', function () {
+            map.setZoom(12);
+            map.setCenter(marker2.getPosition());
+        });
+    
+        var Exxon = new google.maps.LatLng(32.8900057, -96.9499086);
+        var marker3 = new google.maps.Marker({
+            position: Exxon,
+            map: map,
+            title: 'Exxon Mobile'
+        });
+        marker3.setMap(map);
+        google.maps.event.addListener(marker3, 'click', function () {
+            map.setZoom(12);
+            map.setCenter(marker3.getPosition());
+        });
+    
+        var LVSands = new google.maps.LatLng(36.1214517, -115.1696112);
+        var marker4 = new google.maps.Marker({
+            position: LVSands,
+            map: map,
+            title: 'Las Vegas Sands'
+        });
+        marker4.setMap(map);
+        google.maps.event.addListener(marker4, 'click', function () {
+            map.setZoom(12);
+            map.setCenter(marker4.getPosition());
+        });
+    
+        var ACT = new google.maps.LatLng(41.6611277, -91.5301683);
+        var marker5 = new google.maps.Marker({
+            position: ACT,
+            map: map,
+            title: 'ACT, Inc.'
+        });
+        marker5.setMap(map);
+        google.maps.event.addListener(marker5, 'click', function () {
+            map.setZoom(12);
+            map.setCenter(marker5.getPosition());
+        });
+    
+        var JohnDeere = new google.maps.LatLng(41.4768314, -90.4243728);
+        var marker6 = new google.maps.Marker({
+            position: JohnDeere,
+            map: map,
+            title: 'John Deere'
+        });
+        marke6r.setMap(map);
+        google.maps.event.addListener(marker6, 'click', function () {
+            map.setZoom(12);
+            map.setCenter(marker6.getPosition());
+        });
+    
 
-        (
-    {
-        position: new google.maps.LatLng(41.6611277, -91.5301683),
-        map: map,
-        title: 'Click me'
+        var mcgladrey = new google.maps.LatLng(41.8816467, -87.6362882);
+        var marker7 = new google.maps.Marker({
+            position: mcgladrey,
+            map: map,
+            title: 'McGladrey'
+        });
+        marker7.setMap(map);
+
+        // Zoom to 12 when clicking on marker
+        google.maps.event.addListener(marker7, 'click', function () {
+            map.setZoom(12);
+            map.setCenter(marker7.getPosition());
+        });
     }
-);
 
-        //[
-            //    {
-            //        title: 'National Art Museum',
-            //        lat: 41.6611277,
-            //        lng: -91.5301683,
-            //        description: 'National Art Museum'
-            //        map: map
-            //        //position: new google.maps.LatLng(19.4351262, -99.1334024)
-            //    },
-              
-            //    {
-            //        title: "Viceroyal Painting Gallery",
-            //        position: new google.maps.LatLng(19.4331008, -99.1492114)
-            //    },
-            //    {
-            //        title: "Carmelitan Museum",
-            //        position: new google.maps.LatLng(19.3028860, -99.2352628)
-            //    },
-            //    {
-            //        title: "San Carlos Museum",
-            //        position: new google.maps.LatLng(19.3201515, -99.2265153)
-            //    }
-            //];
-
-        function init_map(map_canvas_id, lat, lng, zoomLevel) {
-            var myLatLng = new google.maps.LatLng(41.6611277,-91.5301683);
-            var options = {
-                zoom: zoomLevel,
-                center: myLatLng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map_canvas = document.getElementById(map_canvas_id);
-            var map = new google.maps.Map(map_canvas, options);
-        }    
-   </script>--%>
- 
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    
     <div class="rnd1">
+
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="JobID" DataSourceID="SqlDataSource_ViewMyJobs" 
         BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" CellSpacing="2" ForeColor="Black" CssClass="gv1" >
         <Columns>
-            <asp:BoundField DataField="JobID" HeaderText="Job ID" InsertVisible="False" ReadOnly="True" SortExpression="JobID" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="JobID" HeaderText="Job ID" InsertVisible="False" ReadOnly="True" SortExpression="JobID" ItemStyle-HorizontalAlign="Center" >
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
+            </asp:BoundField>
             <asp:BoundField DataField="CompanyName" HeaderText="Company Name" SortExpression="CompanyName" />
             <asp:BoundField DataField="JobTitle" HeaderText="Job Title" SortExpression="JobTitle" />
-            <asp:BoundField DataField="Internship" HeaderText="Internship?" SortExpression="Internship" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="Internship" HeaderText="Internship?" SortExpression="Internship" ItemStyle-HorizontalAlign="Center" >
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
+            </asp:BoundField>
             <asp:HyperLinkField DataNavigateUrlFields="JobID" DataNavigateUrlFormatString="JobDetails.aspx?JobID={0}" Text="Select" />
         </Columns>
         <FooterStyle BackColor="#CCCCCC" />
@@ -87,24 +126,21 @@
         <PagerStyle BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left" />
         <RowStyle BackColor="White" />
         <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+        <SortedAscendingCellStyle BackColor="#F1F1F1" Width="10px" />
         <SortedAscendingHeaderStyle BackColor="#808080" />
         <SortedDescendingCellStyle BackColor="#CAC9C9" />
         <SortedDescendingHeaderStyle BackColor="#383838" />
     </asp:GridView>
    </div>
-     
-   <h2>Iowa City, Iowa</h2>
-   <div id="googleMap" style="width:50em;height:20em"></div>
+       <br />   
+       <br />
+  
+            <div id="googleMap" style="width:60%;height:30em"></div>
+  <%--  <div id="googleMap" style="width:500px;height:380px;"></div>--%>
    
-   <p>
-      You are viewing a map of Iowa City!
-   </p>
-   
-        
-
     <%--<iframe src="https://www.google.com/maps/d/embed?mid=zmsRBQI0f6Io.kwRFYCutOcbE" width="640" height="480"></iframe>--%>
-
+    <br /> 
+       <br />
     <asp:SqlDataSource ID="SqlDataSource_ViewMyJobs" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
         SelectCommand="SELECT AddJob.JobID, Company.CompanyName, JobTitle.JobTitle, JobType.JobType, AddJob.Internship FROM AddJob LEFT OUTER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID LEFT OUTER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID LEFT OUTER JOIN Company ON AddJob.CompanyID = Company.CompanyID">
     </asp:SqlDataSource>

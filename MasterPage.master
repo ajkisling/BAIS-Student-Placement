@@ -36,7 +36,7 @@
                 
                 <div id="menu">
 
-                    <asp:Menu ID="NavMenu" runat="server" Orientation="Horizontal" StaticSubMenuIndent="16px" >
+                    <asp:Menu ID="NavMenu" runat="server" Orientation="Horizontal" StaticSubMenuIndent="4px" >
                         <Items>
                             <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home" Value="Home"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/User/ViewMyJobs.aspx" Text="View My Jobs" Value="View My Jobs"></asp:MenuItem>
