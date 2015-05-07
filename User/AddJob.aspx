@@ -77,6 +77,7 @@
                     <th><asp:Label ID="lbl_JobTitle" runat="server" Text="Title:   " Font-Bold="True"></asp:Label></th>
                     <td><asp:DropDownList ID="ddl_JobTitle" runat="server" CssClass="dropdown" DataSourceID="SqlDataSource_JobTitle"  
                         DataTextField="JobTitle" DataValueField="JobTitleID" SelectedValue='<%# Bind("JobTitleID")%>' ></asp:DropDownList></td>
+                    <th><asp:HyperLink ID="hplk_AddNewJobTitle" runat="server" NavigateUrl="~/User/AddJobTitle.aspx" CssClass="linkbutton" Font-Underline="false" >Add a New Job Title</asp:HyperLink></th>
                 </tr>
                 
                 <tr>

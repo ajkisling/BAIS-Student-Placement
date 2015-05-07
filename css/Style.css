@@ -317,3 +317,29 @@ h4 {
     font-weight:200;
     
 }
+
+#AddJobTitle {
+    border-style: none;
+    border-color: inherit;
+    border-width: 0px;
+    width: 100%;
+    background-color: #FFCC33;
+    padding:2px 2px 2px 2px;
+    border-radius: 5px;
+}
+
+#AddJobTitle td {
+    font-size: 1em;
+    color: black;
+    border: 1px solid #98bf21;
+    background-color: white;
+    padding: 3px 7px 2px 7px;
+    vertical-align:top;
+    width: 100%;
+}
+
+#AddJobTitle th {
+    vertical-align:top;
+    text-align:right;
+    padding-top:4px;
+}

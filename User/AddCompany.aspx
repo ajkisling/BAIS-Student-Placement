@@ -84,7 +84,7 @@
 
                 <tr>
                     <th colspan="2"><asp:Button ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" CssClass="button" />
-                    &nbsp;<asp:Button ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="button"  /></th>
+                    <asp:HyperLink ID="hplk_CancelAddCompany" runat="server" CssClass="linkbutton" Font-Underline="false" NavigateUrl="~/User/AddJob.aspx">Cancel</asp:HyperLink></th>
                 </tr>
 
             </table>
