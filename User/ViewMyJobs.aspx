@@ -1,30 +1,61 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="ViewMyJobs.aspx.vb" Inherits="User_ViewMyJobs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+    function initialize() {
+        var mapProp = {
+            center: new google.maps.LatLng(41.6611277, -91.5301683),
+            zoom: 5,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    var marker = new google.maps.Marker({
+        position: myCenter,
+    });
+
+    marker.setMap(map);
+</script>
+<%--    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
       
     <script type="text/javascript">
         
-        var markers =
-            [
-                {
-                    title: "National Art Museum",
-                    position: new google.maps.LatLng(19.4351262, -99.1334024)
-                },
-                {
-                    title: "Viceroyal Painting Gallery",
-                    position: new google.maps.LatLng(19.4331008, -99.1492114)
-                },
-                {
-                    title: "Carmelitan Museum",
-                    position: new google.maps.LatLng(19.3028860, -99.2352628)
-                },
-                {
-                    title: "San Carlos Museum",
-                    position: new google.maps.LatLng(19.3201515, -99.2265153)
-                }
-            ];
+        var markers = new google.maps.Marker
+
+        (
+    {
+        position: new google.maps.LatLng(41.6611277, -91.5301683),
+        map: map,
+        title: 'Click me'
+    }
+);
+
+        //[
+            //    {
+            //        title: 'National Art Museum',
+            //        lat: 41.6611277,
+            //        lng: -91.5301683,
+            //        description: 'National Art Museum'
+            //        map: map
+            //        //position: new google.maps.LatLng(19.4351262, -99.1334024)
+            //    },
+              
+            //    {
+            //        title: "Viceroyal Painting Gallery",
+            //        position: new google.maps.LatLng(19.4331008, -99.1492114)
+            //    },
+            //    {
+            //        title: "Carmelitan Museum",
+            //        position: new google.maps.LatLng(19.3028860, -99.2352628)
+            //    },
+            //    {
+            //        title: "San Carlos Museum",
+            //        position: new google.maps.LatLng(19.3201515, -99.2265153)
+            //    }
+            //];
 
         function init_map(map_canvas_id, lat, lng, zoomLevel) {
             var myLatLng = new google.maps.LatLng(41.6611277,-91.5301683);
@@ -36,7 +67,8 @@
             var map_canvas = document.getElementById(map_canvas_id);
             var map = new google.maps.Map(map_canvas, options);
         }    
-   </script>
+   </script>--%>
+ 
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -63,24 +95,15 @@
    </div>
      
    <h2>Iowa City, Iowa</h2>
-   <div id="my_map" style="width:50em;height:20em"></div>
+   <div id="googleMap" style="width:50em;height:20em"></div>
    
    <p>
       You are viewing a map of Iowa City!
    </p>
-    <%--<script type="text/javascript">
-        init_map('my_map', 41.6611277, -91.5301683, 10);
+   
+        
 
-        var map = new google.maps.Map(document.getElementById('map-canvas'), Options);
-
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'Hello World!'
-        });
-        </script>--%>
-
-    <iframe src="https://www.google.com/maps/d/embed?mid=zmsRBQI0f6Io.kwRFYCutOcbE" width="640" height="480"></iframe>
+    <%--<iframe src="https://www.google.com/maps/d/embed?mid=zmsRBQI0f6Io.kwRFYCutOcbE" width="640" height="480"></iframe>--%>
 
     <asp:SqlDataSource ID="SqlDataSource_ViewMyJobs" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
         SelectCommand="SELECT AddJob.JobID, Company.CompanyName, JobTitle.JobTitle, JobType.JobType, AddJob.Internship FROM AddJob LEFT OUTER JOIN JobType ON AddJob.JobTypeID = JobType.JobTypeID LEFT OUTER JOIN JobTitle ON AddJob.JobTitleID = JobTitle.JobTitleID LEFT OUTER JOIN Company ON AddJob.CompanyID = Company.CompanyID">

@@ -3,6 +3,110 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
+        var markers = [
+    {
+        "title": 'Bombay Hospital',
+        "lat": '18.9409388',
+        "lng": '72.82819189999998',
+        "description": 'Bombay Hospital',
+        "type": 'Hospital'
+    },
+        {
+            "title": 'Jaslok Hospital',
+            "lat": '18.9716956',
+            "lng": '72.80991180000001',
+            "description": 'Jaslok Hospital',
+            "type": 'Hospital'
+        },
+    {
+        "title": 'Lilavati Hospital',
+        "lat": '19.0509488',
+        "lng": '72.8285644',
+        "description": 'Lilavati Hospital',
+        "type": 'Hospital'
+    },
+        {
+            "title": 'Aksa Beach',
+            "lat": '19.1759668',
+            "lng": '72.79504659999998',
+            "description": 'Aksa Beach',
+            "type": 'Beach'
+        },
+        {
+            "title": 'Juhu Beach',
+            "lat": '19.0883595',
+            "lng": '72.82652380000002',
+            "description": 'Juhu Beach',
+            "type": 'Beach'
+        },
+        {
+            "title": 'Girgaum Beach',
+            "lat": '18.9542149',
+            "lng": '72.81203529999993',
+            "description": 'Girgaum Beach',
+            "type": 'Beach'
+        },
+        {
+            "title": 'Oberoi Mall',
+            "lat": '19.1737704',
+            "lng": '72.86062400000003',
+            "description": 'Oberoi Mall',
+            "type": 'Mall'
+        },
+        {
+            "title": 'Infinity Mall',
+            "lat": '19.1846511',
+            "lng": '72.83454899999992',
+            "description": 'Infinity Mall',
+            "type": 'Mall'
+        },
+            {
+                "title": 'Phoenix Mall',
+                "lat": '19.0759837',
+                "lng": '72.87765590000003',
+                "description": 'Phoenix Mall',
+                "type": 'Mall'
+            },
+            {
+                "title": 'Phoenix Mall',
+                "lat": '19.0759837',
+                "lng": '72.87765590000003',
+                "description": 'Phoenix Mall',
+                "type": 'Mall'
+            },
+            {
+                "title": 'Hanging Garden',
+                "lat": '18.9560279',
+                "lng": '72.80538039999999',
+                "description": 'Hanging Garden',
+                "type": 'Park'
+            },
+            {
+                "title": 'Jijamata Udyan',
+                "lat": '18.979006',
+                "lng": '72.83388300000001',
+                "description": 'Jijamata Udyan',
+                "type": 'Park'
+            }
+            ,
+            {
+                "title": 'Juhu Garden',
+                "lat": '19.0839704',
+                "lng": '72.83388300000001',
+                "description": 'Juhu Garden',
+                "type": 'Park'
+            },
+            {
+                "title": 'Sanjay Gandhi National Park',
+                "lat": '19.2147067',
+                "lng": '72.91062020000004',
+                "description": 'Sanjay Gandhi National Park',
+                "type": 'Park'
+            }
+        ];
+
+    </script>
+    <script type="text/javascript">
         function init_map(map_canvas_id, lat, lng, zoomLevel) {
             var myLatLng = new google.maps.LatLng(41.6611277,-91.5301683);
             var options = {
