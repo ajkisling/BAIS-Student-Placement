@@ -1,46 +1,8 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="JobDetails.aspx.vb" Inherits="User_JobDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-        <script>
-  var myCenter=new google.maps.LatLng(51.508742,-0.120850);
-
-        function initialize()
-        {
-            var mapProp = {
-                center:myCenter,
-                zoom:5,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
-            };
-
-            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-            var marker=new google.maps.Marker({
-                position:myCenter,
-            });
-
-            marker.setMap(map);
-        }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
-    <script type="text/javascript">
-        function init_map(map_canvas_id, lat, lng, zoomLevel) {
-            var myLatLng = new google.maps.LatLng(41.6611277,-91.5301683);
-            var options = {
-                zoom: zoomLevel,
-                center: myLatLng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP};
-            var map_canvas = document.getElementById(map_canvas_id);
-            var map = new google.maps.Map(map_canvas, options);}
-   </script>
-    <style type="text/css">
-        .auto-style1 {
-            height: 27px;
-        }
-    </style>
-</asp:Content>
+ 
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <asp:SqlDataSource ID="SqlDataSource_JobDetails" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
@@ -325,25 +287,6 @@
 
     </asp:FormView>
 
-    <div id="my_map" style="width:50em;height:20em"></div>
-   
-   <p>
-      You are viewing a map of Iowa City!
-   </p>
-    
- <%--   <script type="text/javascript">
-        init_map('my_map', 41.6611277, -91.5301683, 10);
-
-        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'Hello World!'});
-        </script>--%>
-
-    <iframe width="600" height="450" frameborder="0" style="border:0" 
-        src="https://www.google.com/maps/embed/v1/place?q=711%20High%20Street%2C%20Des%20Moines%2C%20IA%2C%20United%20States&key=AIzaSyCSvSuphj2pDdMeBD_K8XWAdD1EMG88hdo"></iframe>
 <asp:Label ID="lbl_DeletedJob" runat="server" Text=""></asp:Label>
 
 </asp:Content>
