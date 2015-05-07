@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <div class="rnd1">
-    <asp:FormView ID="FormView1" runat="server" AllowPaging="True" DataKeyNames="CompanyID" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333">
+    <asp:FormView ID="FormView1" runat="server" DataKeyNames="CompanyID" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333">
         <EditItemTemplate>
             CompanyName:
             <asp:TextBox ID="CompanyNameTextBox" runat="server" Text='<%# Bind("CompanyName") %>' />
@@ -70,31 +70,33 @@
             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </InsertItemTemplate>
         <ItemTemplate>
-            CompanyName:
+            <strong>CompanyName:</strong>
             <asp:Label ID="CompanyNameLabel" runat="server" Text='<%# Bind("CompanyName") %>' />
             <br />
-            State:
-            <asp:Label ID="StateLabel" runat="server" Text='<%# Bind("State") %>' />
             <br />
-            JobTitle:
+            <strong>JobTitle:</strong>
             <asp:Label ID="JobTitleLabel" runat="server" Text='<%# Bind("JobTitle") %>' />
             <br />
-            JobType:
+            <strong>JobType:</strong>
             <asp:Label ID="JobTypeLabel" runat="server" Text='<%# Bind("JobType") %>' />
             <br />
-            JobSkillDescription:
+            <strong>JobSkillDescription:</strong>
             <asp:Label ID="JobSkillDescriptionLabel" runat="server" Text='<%# Bind("JobSkillDescription") %>' />
             <br />
-            CompanyAddress:
+            <br />
+            <strong>CompanyAddress:</strong>
             <asp:Label ID="CompanyAddressLabel" runat="server" Text='<%# Bind("CompanyAddress") %>' />
             <br />
-            CompanyCity:
+            <strong>CompanyCity:</strong>
             <asp:Label ID="CompanyCityLabel" runat="server" Text='<%# Bind("CompanyCity") %>' />
             <br />
-            CompanyZip:
+            <strong>State: </strong>
+            <asp:Label ID="StateLabel" runat="server" Text='<%# Bind("State") %>' />
+            <br />
+            <strong>CompanyZip:</strong>
             <asp:Label ID="CompanyZipLabel" runat="server" Text='<%# Bind("CompanyZip") %>' />
             <br />
-            CompanyID:
+            <strong>CompanyID:</strong>
             <asp:Label ID="CompanyIDLabel" runat="server" Text='<%# Eval("CompanyID") %>' />
             <br />
         </ItemTemplate>

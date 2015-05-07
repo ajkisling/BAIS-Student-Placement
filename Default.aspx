@@ -13,7 +13,7 @@ Donec rhoncus, sem semper facilisis aliquet, erat massa interdum urna, vehicula 
 
 Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravida nec nulla ut, pharetra dictum ex. Curabitur at erat volutpat, facilisis ex id, mollis sapien. In felis lacus, pulvinar at facilisis a, aliquet a odio. Donec aliquam leo eleifend ex placerat, condimentum convallis purus gravida. Integer iaculis tempus lorem, non convallis diam condimentum in. Aliquam sed ligula nec sapien commodo sodales. Proin tristique quis ante eget interdum. Praesent eu luctus nisl, sit amet sagittis sapien.</p>
      
-     <asp:SqlDataSource ID="sql_CompName" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [Company]"></asp:SqlDataSource>
+     <asp:SqlDataSource ID="sql_CompName" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, Company.CompanyAddress, Company.CompanyCity, Company.CompanyZip, Company.State, AddJob.CompanyID FROM Company INNER JOIN AddJob ON Company.CompanyID = AddJob.CompanyID"></asp:SqlDataSource>
      <asp:SqlDataSource ID="sql_JobTitle" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobTitle]"></asp:SqlDataSource>
      <br />
     <div class="rnd1">
@@ -33,16 +33,16 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
      
     <table>
         <tr> 
-            <td><asp:GridView ID="gv_CompName" runat="server" Visible="False" AutoGenerateColumns="False" DataKeyNames="CompanyID" DataSourceID="sql_CompName"
+            <td><asp:GridView ID="gv_CompName" runat="server" Visible="False" AutoGenerateColumns="False" DataSourceID="sql_CompName"
                  BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" CellSpacing="2" ForeColor="Black" CssClass="gv1">
              <Columns>
-             <asp:BoundField DataField="CompanyID" HeaderText="CompanyID" InsertVisible="False" ReadOnly="True" SortExpression="CompanyID" />
              <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName" />
              <asp:BoundField DataField="CompanyAddress" HeaderText="CompanyAddress" SortExpression="CompanyAddress" />
              <asp:BoundField DataField="CompanyCity" HeaderText="CompanyCity" SortExpression="CompanyCity" />
              <asp:BoundField DataField="CompanyZip" HeaderText="CompanyZip" SortExpression="CompanyZip" />
              <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
-             <asp:HyperLinkField DataNavigateUrlFields="CompanyID" DataNavigateUrlFormatString="CompNameDetails.aspx?CompanyID={0}" Text="View" />
+             <asp:BoundField DataField="CompanyID" HeaderText="CompanyID" SortExpression="CompanyID" />
+                 <asp:HyperLinkField DataNavigateUrlFields="CompanyName" DataNavigateUrlFormatString="CompNameDetails.aspx?CompanyName={0}" Text="View" />
              </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -73,6 +73,7 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
              </asp:GridView></td>
         </tr>
     </table>
+        <asp:Button  Class="button" ID="btn_view" runat="server" Text="View All My Jobs" />
      <br />
     </div>
 
