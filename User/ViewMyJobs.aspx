@@ -78,7 +78,7 @@
             map: map,
             title: 'John Deere'
         });
-        marke6r.setMap(map);
+        marker6.setMap(map);
         google.maps.event.addListener(marker6, 'click', function () {
             map.setZoom(12);
             map.setCenter(marker6.getPosition());
@@ -135,10 +135,9 @@
        <br />   
        <br />
   
-            <div id="googleMap" style="width:60%;height:30em"></div>
-  <%--  <div id="googleMap" style="width:500px;height:380px;"></div>--%>
+            <div id="googleMap" style="width:60%;height:30em; border-radius:5px;"></div>
+  <%--  <div id="googleMap" style="width:500px;height:380px; border-radius:5px;"></div>--%>
    
-    <%--<iframe src="https://www.google.com/maps/d/embed?mid=zmsRBQI0f6Io.kwRFYCutOcbE" width="640" height="480"></iframe>--%>
     <br /> 
        <br />
     <asp:SqlDataSource ID="SqlDataSource_ViewMyJobs" runat="server" ConnectionString="<%$ ConnectionStrings:PlacementDB2ConnectionString %>" 
