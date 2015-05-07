@@ -16,15 +16,15 @@ Sed volutpat mollis nisi, sed lobortis massa pulvinar id. Morbi velit est, gravi
      <asp:SqlDataSource ID="sql_CompName" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT Company.CompanyName, Company.CompanyAddress, Company.CompanyCity, Company.CompanyZip, Company.State, AddJob.CompanyID FROM Company INNER JOIN AddJob ON Company.CompanyID = AddJob.CompanyID"></asp:SqlDataSource>
      <asp:SqlDataSource ID="sql_JobTitle" runat="server" ConnectionString="<%$ ConnectionStrings:dbo.StudentPlacement %>" SelectCommand="SELECT * FROM [JobTitle]"></asp:SqlDataSource>
      <br />
-    <div class="rnd1">
+    <div class="rnd12" >
      <table>
          <tr>
-            <td><asp:Label ID="lbl_Name" runat="server" Text="Search by Company Name:"></asp:Label></td>
+            <td><asp:Label ID="lbl_Name" runat="server" Text="Search by Company Name:" Font-Bold="True" ForeColor="Black"></asp:Label></td>
             <td><asp:TextBox ID="tb_compName" runat="server"></asp:TextBox></td>
             <td><asp:Button Class="button" ID="btn_CompName" runat="server" Text="Search" /></td>
          </tr>
          <tr>
-            <td><asp:Label ID="lbl_Title" runat="server" Text="Search by Job Title:"></asp:Label></td>
+            <td><asp:Label ID="lbl_Title" runat="server" Text="Search by Job Title:" Font-Bold="True" ForeColor="Black"></asp:Label></td>
             <td><asp:TextBox ID="tb_JobTitle" runat="server"></asp:TextBox></td>
             <td><asp:Button Class="button" ID="btn_JobTitle" runat="server" Text="Search" /></td>
          </tr>

@@ -166,6 +166,16 @@ h4 {
 
  }
 
+  .rnd12 {
+   background-color: #FFCC33;
+   border:0px none;
+   padding:2px 4px 2px 2px;
+   border-radius: 5px;
+   width: 500px;
+   height: auto;
+
+ }
+
 .gv1 {
    width: 99.5%;
    height: 98%;
